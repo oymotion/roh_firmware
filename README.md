@@ -4,8 +4,8 @@ Firmware & protocol for ROH
 
 ## 目录说明
 
-1. modbus：ModBus-RTU版的固件和发布说明，目录下[OHandModBusRTUProtocol.md](modbus/OHandModBusRTUProtocol.md)为MosBus协议；
-2. serial_protocol：自有协议版的固件和发布说明，目录下[OHandSerialProtocol.md](serial_protocol/OHandSerialProtocol.md)为协议文档；对应SDK请移步这里[https://github.com/oymotion/ohand_serial_sdk](https://github.com/oymotion/ohand_serial_sdk)
+1. modbus：ModBus-RTU版的固件和发布说明，目录下[OHandModBusRTUProtocol.md](modbus/OHandModBusRTUProtocol.md)为MosBus协议文档；
+2. serial_protocol：自有协议版的固件和发布说明，目录下[OHandSerialProtocol.md](serial_protocol/OHandSerialProtocol.md)为串行协议文档；对应SDK请移步这里[https://github.com/oymotion/ohand_serial_sdk](https://github.com/oymotion/ohand_serial_sdk)
 
 ## 更新方法
 
