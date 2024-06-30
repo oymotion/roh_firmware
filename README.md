@@ -14,15 +14,15 @@ Firmware & protocol for ROH
 3. 设备管理器内查找好USB转485模块的串口名；
 4. windows下以命令行方式运行命令
 
-```CMD
-update <update_file> -COMx -115200
-```
+    ```CMD
+    update <update_file> -COMx -115200
+    ```
 
-```TXT
-其中，
-<update_file>为升级文件，带扩展名，例如serial_protocol\oHandSerialRobotic_SpeedControl_1B01_V3.0-59-c129b08.upd，
-COMx即USB转485模块的串口名
-```
+    ```TXT
+    其中，
+    <update_file>为升级文件，带扩展名，例如serial_protocol\oHandSerialRobotic_SpeedControl_1B01_V3.0-59-c129b08.upd，
+    COMx即USB转485模块的串口名
+    ```
 
 5. 10秒内打开手头电源；
 6. 完成升级。
