@@ -1,28 +1,31 @@
-# ROH Firmware
+# ROH 固件/ROH Firmware
 
-Firmware & protocol for ROH
+ROH 固件、协议文档和桌面端应用
+Firmware, protocol and desktop application for ROH
 
-## 目录说明
+## Directories/目录说明
 
-1. modbus：ModBus-RTU版的固件和发布说明，目录下[OHandModBusRTUProtocol.md](modbus/OHandModBusRTUProtocol.md)为MosBus协议文档；
-2. serial_protocol：自有协议版的固件和发布说明，目录下[OHandSerialProtocol.md](serial_protocol/OHandSerialProtocol.md)为串行协议文档；对应SDK请移步这里[https://github.com/oymotion/ohand_serial_sdk](https://github.com/oymotion/ohand_serial_sdk)
+res: resource file for MD files / 文档资源文件目录
+firmware: firmware update files / 固件升级文件目录
+OHandSetting: desktop application for WINDOWS / WINDOWS 版桌面端工具
 
-## 更新方法
+## Files/文件说明
 
-1. 手头断电；
-2. 连接好USB转485模块以及手头，并将USB转485模块连接到电脑；
-3. 设备管理器内查找好USB转485模块的串口名；
-4. windows下以命令行方式运行命令
+1. [OHandModBusRTUProtocol_CN.md](OHandModBusRTUProtocol_CN.md)为中文版 MosBus-RUT 协议文档；
+2. [OHandModBusRTUProtocol_EN.md](OHandModBusRTUProtocol_EN.md) is ModBus-RTU protocol specification；
+3. roh_registers_v1.h/roh_registers_v1.py: C，C++和 Python 寄存器定义 / registers definitions for C, C++ & Python
 
-    ```CMD
-    update <update_file> -COMx -115200
-    ```
+## Firmware Update/固件更新方法
 
-    ```TXT
-    其中，
-    <update_file>为升级文件，带扩展名，例如serial_protocol\oHandSerialRobotic_SpeedControl_1B01_V3.0-59-c129b08.upd，
-    COMx即USB转485模块的串口名
-    ```
-
-5. 10秒内打开手头电源；
-6. 完成升级。
+1. Power off the ROHand.
+   手头断电；
+2. Connect USB-485 converter to ROHand and computer.
+   连接好 USB 转 485 模块以及手头，并将 USB 转 485 模块连接到电脑；
+3. Found your COM port in system device manager
+   设备管理器内查找好 USB 转 485 模块的串口名；
+4. Open OHandSetting, Click "Menu"-"File"-"Force Update", choose locale source and firmware update file in directory "firmware".
+   打开 OHandSetting，点击“菜单”-“文件”-“强制升级”，选择“本地文件”-firmware 目录下的升级文件；
+5. Follow the instructions.
+   按提示操作；
+6. Done.
+   完成升级。
