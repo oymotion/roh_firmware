@@ -23,7 +23,7 @@ OHandSetting: desktop application for WINDOWS / WINDOWS 版桌面端工具
    连接好 USB 转 485 模块以及手头，并将 USB 转 485 模块连接到电脑；
 3. Found your COM port in system device manager  
    设备管理器内查找好 USB 转 485 模块的串口名；
-4. Open OHandSetting, Click "Menu"-"File"-"Force Update", choose locale source and firmware update file in directory "firmware".  
+4. Open OHandSetting, Click "Menu"-"File"-"Force Update", choose local source and firmware update file in directory "firmware".  
    打开 OHandSetting，点击“菜单”-“文件”-“强制升级”，选择“本地文件”-firmware 目录下的升级文件；
 5. Follow the instructions.  
    按提示操作；
