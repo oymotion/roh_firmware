@@ -660,11 +660,12 @@ ROH_FINGER_ANGLE9         = (1174) # R
 ### 4.2. Angle of ROH_FINGER_ANGLE_TARGET and ROH_FINGER_POS
 
 Description of angle definition and motion range:
-|                                         Angle                                         |                  Legend                   |                          Angle range                          |
-| :-----------------------------------------------------------------------------------: | :---------------------------------------: | :------------------------------------------------------------------------------------------: |
+
+|                                         Angle                                         |                  Legend                   |                                             Angle range                                              |
+| :-----------------------------------------------------------------------------------: | :---------------------------------------: | :--------------------------------------------------------------------------------------------------: |
 | Index finger </br></br> Middle finger </br></br> Ring finger </br></br> Little finger | ![Finger Screen](res/FingerBendingEN.png) | 100.22°~178.37° </br></br> 97.81° ~ 176.06° </br></br> 101.38° ~ 176.54° </br></br> 98.84° ~ 174.86° |
-|                                     Thumb bending                                     | ![Finger Screen](res/ThumbBendingEN.png)  |                                       2.26° ~ 36.76°                                       |
-|                                    Thumb rotation                                     |  ![Finger Screen](res/ThumbRotation.png)  |                                          0° ~ 90°                                           |
+|                                     Thumb bending                                     | ![Finger Screen](res/ThumbBendingEN.png)  |                                            2.26° ~ 36.76°                                            |
+|                                    Thumb rotation                                     |  ![Finger Screen](res/ThumbRotation.png)  |                                               0° ~ 90°                                               |
 
 ### 4.3. Status code of ROH_FINGER_STATUS
 
