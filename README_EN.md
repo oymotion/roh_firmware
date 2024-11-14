@@ -7,8 +7,8 @@ Firmware, protocol and desktop application for ROH
 - *res*: resource file for markdown files
 - *firmware*: firmware update files
   - files in subdirectory ModBus-RTU are for ModBus-RTU version
-  - files in subdirectory SerialCtrl are for SerialCtrl version
-  - files in subdirectory ModBus-RTU+SerialCtrl are for mixed version
+  - files in subdirectory SerialCtrl are for SerialCtrl version, can process commands at 90Hz+.
+  - files in subdirectory ModBus-RTU+SerialCtrl are for mixed version, recommended.
 - *OHandSetting*: desktop application for WINDOWS
 
 ## Files

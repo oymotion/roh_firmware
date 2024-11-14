@@ -7,8 +7,8 @@ ROH 固件、协议文档和桌面端应用
 - *res*: 文档资源文件目录
 - *firmware*: 固件升级文件目录
   - 子目录ModBus-RTU下为ModBus-RTU版固件
-  - 子目录SerialCtrl下为串口协议版固件
-  - 子目录ModBus-RTU+SerialCtrl下为混合协议版固件
+  - 子目录SerialCtrl下为串口协议版固件——带复合读写接口，命令处理频率可达60Hz
+  - 子目录ModBus-RTU+SerialCtrl下为混合协议版固件——推荐
 - *OHandSetting*: WINDOWS 版桌面端工具
 
 ## 文件说明
