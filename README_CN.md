@@ -2,22 +2,24 @@
 
 ROH 固件、协议文档和桌面端应用
 
-## 目录说明
+## 目录 & 文件
 
-- *res*: 文档资源文件目录
-- *firmware*: 固件升级文件目录
-  - 子目录ModBus-RTU下为ModBus-RTU版固件
-  - 子目录SerialCtrl下为串口协议版固件——带复合读写接口，命令处理频率可达60Hz
-  - 子目录ModBus-RTU+SerialCtrl下为混合协议版固件——推荐
-- *OHandSetting*: WINDOWS 版桌面端工具
-
-## 文件说明
-
-1. [OHandModBusRTUProtocol_CN.md](OHandModBusRTUProtocol_CN.md)为 MosBus-RTU 协议文档
-2. [OHandSerialCtrlProtocol_CN.md](OHandSerialCtrlProtocol_CN.md)为 SerialCtrl 协议文档
-3. roh_registers_v1.h/roh_registers_v1.py: C，C++和 Python 寄存器定义
-4. ROH-A001机器人灵巧手-V1.2.pdf: 用户手册
-5. OHandSetting使用手册.pdf: 桌面端工具使用手册
+- *[FAQs](FAQs)*: 常见问题
+  - [FAQs_CN.md](FAQs/FAQs_CN.md): 常见问题解答
+- *[firmware](firmware)*: 固件升级文件
+  - 子目录中 [ModBus-RTU](firmware/ModBus-RTU) 文件为MOdBus-RTU版本。
+  - 子目录中 [SerialCtrl](firmware/SerialCtrl) 文件为SerialCtrl版本，能处理90Hz+频率的指令。
+  - 子目录中 [ModBus-RTU+SerialCtrl](firmware/ModBus-RTU+SerialCtrl) 文件为双协议混合版本，推荐使用。
+  - [RELEASE_INFO.md](firmware/RELEASE_INFO.md): 每个固件版本的发布信息。
+- *[OHandSetting](OHandSetting)*: 机器人灵巧手(Robotic OHand)的桌面端应用(仿生手Prosthetic OHand也适用，因此命名OHandSetting)，目前仅支持 Windows 系统。
+  - [OHandSetting使用手册.pdf](OHandSetting/OHandSetting使用手册.pdf): 桌面端应用使用说明。
+- *[protocol](protocol)*: Modbus-RTU和SerialCtrl版本的协议格式
+  - [OHandModBusRTUProtocol_CN.md](protocol/OHandModBusRTUProtocol_CN.md): ModBus-RTU 协议格式。
+  - [OHandSerialProtocol_CN.md](protocol/OHandSerialProtocol_CN.md): SerialCtrl 协议格式。
+  - [roh_registers_v1.h](protocol/roh_registers_v1.h)/[roh_registers_v1.py](protocol/roh_registers_v1.py): C，C++ & Python的寄存器定义。
+- *[res](res)*: markdown文件的资源文件
+- *[UserManual](UserManual)*: ROH用户手册
+  - [ROH-A001机器人灵巧手-V1.x.x.pdf](UserManual/ROH-A001机器人灵巧手-V1.2.2.pdf): 用户手册。
 
 ## 固件更新方法
 
