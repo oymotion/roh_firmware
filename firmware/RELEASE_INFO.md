@@ -12,6 +12,6 @@
 | V3.1-168 | 2024-11-14 | Optimized: PID control                                                                                                                            |
 |          |            | Modified:  parameters of stall protection                                                                                                         |
 |          |            | Added feature: auto recovery after stall protection                                                                                               |
-|          |            | Added feature: estimate touque by current                                                                                                         |
+|          |            | Added feature: estimate torque by current                                                                                                         |
 |          |            | Fixed bug: wrong speed size of batch setting comamnd                                                                                              |
 |          |            | Fixed bug: Missing cotor count in SerialCtrl commands HAND_CMD_SET_FINGER_POS_ABS_ALL、HAND_CMD_SET_FINGER_POS_ALL、HAND_CMD_SET_FINGER_ANGLE_ALL |
