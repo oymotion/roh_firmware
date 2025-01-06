@@ -12,7 +12,7 @@ Firmware, protocol and desktop application for Robotic OHand，i.e.，ROH.
   - files in subdirectory [ModBus-RTU+SerialCtrl](firmware/ModBus-RTU+SerialCtrl) are for mixed version, recommended.
   - [RELEASE_INFO.md](firmware/RELEASE_INFO.md): release information for each firmware version.
 - *[OHandSetting](OHandSetting)*: desktop application for Robotic OHand (also for Prosthetic OHand, so it's name is "OHandSetting"). WINDOWS only currently.
-  - [OHandSetting-Instruction-Manual-V1.1.pdf](OHandSetting/OHandSetting-Instruction-Manual-V1.1.pdf): Instruction manual for desktop application.
+  - [OHandSetting-User-Manual-V1.1.pdf](OHandSetting/OHandSetting-User-Manual-V1.1.pdf): User manual for desktop application.
 - *[protocol](protocol)*: protocol specification for ModBus-RTU and SerialCtrl versions
   - [OHandModBusRTUProtocol_EN.md](protocol/OHandModBusRTUProtocol_EN.md): ModBus-RTU protocol specification.
   - [OHandSerialProtocol_EN.md](protocol/OHandSerialProtocol_EN.md): SerialCtrl protocol specification.
