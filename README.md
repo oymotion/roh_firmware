@@ -1,4 +1,4 @@
-# Firmware, Protocol and Desktop Application fo ROH Dexterous Hand
+# Firmware, Protocol and Desktop Application for ROH Dexterous Hand
 
 ![ROH Dexterous Hand](res/ROHs.png)
 
