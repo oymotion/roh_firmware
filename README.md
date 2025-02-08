@@ -6,7 +6,7 @@ Firmware, protocol and desktop application for ROH. See [README_EN.md](README_EN
 
 ROH 固件、协议文档和桌面端应用。请查看 [README_CN.md](README_CN.md) 以获取详细
 
-Other links:
+## Other links:
 
 ROS package:  [https://github.com/oymotion/rohand_ros_pkg](https://github.com/oymotion/rohand_ros_pkg)  
 ROS2 package:  [https://github.com/oymotion/rohand_ros2_pkg](https://github.com/oymotion/rohand_ros2_pkg)  
