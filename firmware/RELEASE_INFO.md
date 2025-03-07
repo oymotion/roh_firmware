@@ -16,3 +16,4 @@
 |          |            | Fixed bug: wrong speed size of batch setting comamnd                                                                                              |
 |          |            | Fixed bug: Missing cotor count in SerialCtrl commands HAND_CMD_SET_FINGER_POS_ABS_ALL、HAND_CMD_SET_FINGER_POS_ALL、HAND_CMD_SET_FINGER_ANGLE_ALL |
 | V3.1-172 | 2024-12-25 | Decrease power consumption during power-on self-test                                                                                              |
+| V3.1-209 | 2025-03-07 | Decrease vibration when motor stalled.                                                                                                            |
