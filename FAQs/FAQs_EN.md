@@ -29,15 +29,23 @@ When ROHand is connected to other devices, such as a robotic arm, for example, t
 Wiring method is as follows:
 ![ROHand_LSR wiring](res/wiring_realman_EN.png)
 
-### 2.Q: What is the working voltage range of ROHand?
+### 2. Q: How to solve the problem that ROHand communication is abnormal and cannot be upgraded?
+
+    A: Please make sure the USB to RS485 module is provided by OYMotion, and test it according to the following process: When the communication of ROHand is abnormal, or the upgrade fails when upgrading the firmware, please firstly, check the wiring connection with or without poor contact or disconnection, and secondly, make sure the power supply and the USB to RS485 module have been processed with a common ground, please refer to the wiring diagram above. If the wiring connection is correct, but the communication is still abnormal, please try to connect the 120Ω termination resistor, i.e. short the A port and R port of the provided USB to RS485 module. If the problem still cannot be solved, please contact technical support.
+
+### 3.Q: What is the working voltage range of ROHand?
 
     A: ROHand can accept a working voltage range of 12 ~ 32V, rated power of 48W, and rated voltage of 24V. Please note that do not hot plug and unplug the power supply over 32V, otherwise it may cause damage to the electronic components.
 
-### 3.Q: What is the current parameter of ROHand?
+### 4.Q: What is the current parameter of ROHand?
 
     A: The static current of the first-generation ROHand under 24V voltage is 0.12A, the average current under no-load motion is 0.25A, and the maximum gripping current under maximum gripping force is 1.9A.
 
-## Protocol
+### 5. Q: Why is there a continuous current output in the finger at zero position and the thumb rotation cannot be zeroed?
+
+    A: Due to the PID control algorithm inside the dexterous hand, when the motor position has internal or external reasons for error, the algorithm to make it maintain in the zero position, so there will be a continuous current output in the zero position, which is a normal phenomenon. Thumb rotation can not be zeroed in order to reduce the side of the hand skin accumulation of stress, set 1 ° offset angle to reduce the range of motion, also belongs to the normal phenomenon.
+
+## Software
 
 ### 1.Q: How to program ROHand?
 
@@ -57,15 +65,19 @@ Wiring method is as follows:
 
 ### 5.Q: Why does the finger shake when it moves?
 
-    A:The dexterous hand uses a PID control algorithm internally. The shaking is caused by an inappropriate setting of the PID parameters. It is recommended that users adjust the PID parameters in the OHandSetting directory on the desktop using the OHandSetting.exe tool according to their actual usage scenarios to make the dexterous hand's movement smoother.
+    A:The ROHand uses a PID control algorithm internally. The shaking is caused by an inappropriate setting of the PID parameters. It is recommended that users adjust the PID parameters in the OHandSetting directory on the desktop using the OHandSetting.exe tool according to their actual usage scenarios to make the dexterous hand's movement smoother.
 
-### 6.Q: How to solve the problem of ROHand upgrading failure?
+### 6.Q: What is the maximum baud rate and command processing frequency of ROHand?
 
-    A: When the dexterous hand prompts an 'upgrade failure' or 'device no response' during upgrade, please first check for any loose or disconnected connections, and confirm that the power supply and USB-485 module have been properly grounded, refer to the wiring diagram above. If the connection is correct, but the upgrade still fails, please contact our technical support.
+    A:ROH-A001 dexterous hand supports a maximum baud rate of 115200. At this maximum baud rate, using a native USB-485 module can support a command processing frequency of around 60Hz. Using the specialized serial control protocol with compound commands, the frequency can reach around 90-100. The next generation dexterous hand supports automatic baud rate detection, with a maximum baud rate of up to 921600.
 
-### 7.Q: What is the maximum baud rate and command processing frequency of ROHand?
+### 7. Q: What are the controls for the dexterous hand? How does each control convert?
 
-    A:The first-generation dexterous hand supports a maximum baud rate of 115200. At this maximum baud rate, using a native USB-485 module can support a command processing frequency of around 60Hz. Using the specialized serial control protocol with compound commands, the frequency can reach around 90-100. The next generation dexterous hand supports automatic baud rate detection, with a maximum baud rate of up to 921600.
+    A: ROH-A001 dexterous hand supports position control and angle control. Position control directly controls the motor screw's position, which is divided into logical position and absolute position. The absolute position is the value of the motor encoder after factory calibration. Logical position, on the other hand, is the value after mapping the range of absolute position to 0-65535. The essence of finger angle control is that the input angle is derived from the formula and then converted to the corresponding absolute position to control the motor, and vice versa, the finger angle can also be deduced from the motor screw position.
+
+### 8. Q: Dexterous hand internal motor control algorithm is based on what parameters?
+
+    A: The internal motor control of the Dexterous Hand is based on the PID control algorithm of the position loop to realize the precise control of the finger. It also detects the running speed and running current in real time, and the current value can be used as part of the factor to judge the motor blocking. When the motor is blocked for a long time, ROHand will heat up, the control logic can be optimized to reduce the heat, the strategy is to detect the blockage when no longer send commands greater than the current finger position, but send commands less than or equals to the current finger position until the blockage is lifted, refer to Appendix 3.
 
 ## Appendix
 
@@ -169,4 +181,94 @@ if __name__ == "__main__":
     current_angle = current_angle  / 100.0
 
     print("Current finger angle：", current_angle)
+```
+
+### 3.Example of reducing heat generation due to motor stuck
+
+```python
+# Sample code to get glove data and controls ROHand via ModBus-RTU protocol
+
+import asyncio
+import os
+import signal
+import sys
+import time
+
+from pymodbus import FramerType
+from pymodbus.client import ModbusSerialClient
+
+from roh_registers_v1 import *
+
+# ROHand configuration
+COM_PORT = "COM1"
+NODE_ID = 2
+NUM_FINGERS = 6
+
+current_dir = os.path.dirname(os.path.realpath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
+
+class Application:
+
+    def __init__(self):
+        signal.signal(signal.SIGINT, lambda signal, frame: self._signal_handler())
+        self.terminated = False
+
+    def _signal_handler(self):
+        print("You pressed ctrl-c, exit")
+        self.terminated = True
+
+    def write_registers(self, client, address, values, node_id):
+        resp = client.write_registers(address, values, node_id)
+        if resp.isError():
+            print("client.write_registers() returned", resp)
+            return False
+        else :
+            return True
+
+    async def main(self):
+        client = ModbusSerialClient(COM_PORT, FramerType.RTU, 115200)
+        client.connect()
+
+        self.write_registers(client, ROH_FINGER_SPEED0, [65535, 65535, 65535, 65535, 65535], NODE_ID)
+
+        # Open all fingers
+        self.write_registers(client, ROH_FINGER_POS_TARGET0, [0, 0, 0, 0, 0], NODE_ID)
+        time.sleep(1.5)
+
+        # Rotate thumb root to opposite
+        print("Moving thumb root...")
+        status_tmbRoot = client.read_holding_registers(ROH_FINGER_STATUS5, 1, NODE_ID)
+
+        while status_tmbRoot.registers == 5:
+            print("Thumb root stuck, retrying...")
+            self.write_registers(client, ROH_FINGER_POS_TARGET5, [0], NODE_ID)
+            status = client.read_holding_registers(ROH_FINGER_STATUS5, 1, NODE_ID)
+
+        self.write_registers(client, ROH_FINGER_POS_TARGET5, [65535], NODE_ID)
+        time.sleep(1.5)
+
+        pos = [65535, 65535, 65535, 65535, 65535]
+        pos_copy = pos.copy()
+
+        while not self.terminated:
+
+            status = client.read_holding_registers(ROH_FINGER_STATUS0, 5, NODE_ID)
+
+            for i in range(5):
+                if status.registers[i] == 5:
+                    print("Finger", i, "is stuck")
+                    # If finger is stuck, set target position to current position
+                    resp = client.read_holding_registers(ROH_FINGER_POS0 + i, 1, NODE_ID)
+                    pos_copy[i] = resp.registers
+                else:
+                    pos_copy[i] = pos[i]
+
+            self.write_registers(client, ROH_FINGER_POS_TARGET0, pos, NODE_ID)
+
+
+if __name__ == "__main__":
+    app = Application()
+    asyncio.run(app.main())
 ```
