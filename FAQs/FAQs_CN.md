@@ -59,9 +59,9 @@
 
 答: 每个灵巧手的手指角度范围因工艺会有细微差别，因此需要获取实际的角度范围，可通过分别在*ROH_FINGER_POS_TARGET0 ~ ROH_FINGER_POS_TARGET5*寄存器中写入0和65535，对应手指的最大角度和最小角度。此时读取*ROH_FINGER_ANGLE0 ~ ROH_FINGER_POS_ANGLE5*寄存器，获取到的值即为实际的角度上限和下限。代码参考附录2
 
-### 4.问: 如何简单判断灵巧手是否抓取到物体？
+### 4.问: 如何简单判断灵巧手是否抓取到物体？能否通过力量值判断？
 
-答: 力反馈功能将在下一个版本发布，目前版本是通过*read_holding_registers*指令，读取手指状态寄存器*ROH_FINGER_STATUS0 ~ ROH_FINGER_STATUS5*，判断电机状态码是否为5(STATUS_STUCK)电机堵转，堵转则为抓取到物体。或者通过写电流限制值寄存器*ROH_FINGER_CURRENT_LIMIT0 ~ ROH_FINGER_CURRENT_LIMIT5*，将电流限制值设置为特定值，电机堵转电流超过限制值后停止运行，重新写入目标位置值后会自动重启。
+答: 力反馈功能将在下一个版本ROH-AP001发布，目前ROH-A001版本的力量值是根据电机电流与力矩曲线推到的值，而经过机械结构传导后无法准确得到手指的力量。而判断抓取到物体是通过*read_holding_registers*指令，读取手指状态寄存器*ROH_FINGER_STATUS0 ~ ROH_FINGER_STATUS5*，判断电机状态码是否为5(STATUS_STUCK)电机堵转，堵转则为抓取到物体。或者通过写电流限制值寄存器*ROH_FINGER_CURRENT_LIMIT0 ~ ROH_FINGER_CURRENT_LIMIT5*，将电流限制值设置为特定值，电机堵转电流超过限制值后停止运行，重新写入目标位置值后会自动重启。
 
 ### 5.问：手指运动时为什么会有抖动？
 
