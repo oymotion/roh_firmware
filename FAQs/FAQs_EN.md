@@ -1,30 +1,30 @@
 # ROHand Q&A
 
-## Electrical
+## Hardware
 
 ### 1.Q:How to connect ROHand?
 
 A: ROHand has a four-core cable connected from the wrist, the color definition is:
 
-| Color | Definition |
-| :---: | :--------: |
-|  Red  | Power 24V+ |
-| Black | Power 24V- |
-| Brown |  RS485_A   |
-| White |  RS485_B   |
+| Color |  Definition   |
+| :---: | :-----------: |
+|  Red  |  Power 24V+   |
+| Black |  Power 24V-   |
+| Brown | RS485_A/CAN_L |
+| White | RS485_B/CAN_H |
 
 When the power supply of the host and the ROHand is not the same power supply, it is necessary to connect the ROHand and the host to the same ground, that is, short-circuit the negative power supply of the power supply and the GND of the USB to 485 module.
 ![ROHand_LS wiring](res/wiring_EN.png)
-When ROHand is connected to other devices, such as a robotic arm, for example, the RM65 robotic arm (custom version), the test line color definition is:
+When ROHand is connected to other devices, such as a robotic arm, for example, the RM65 robotic arm, the test line color definition is:
 
-| Serial No. |     Color      | Definition |
-| :--------: | :------------: | :--------: |
-|     1      |     Green      |  RS485_A   |
-|     2      |      Blue      |  RS485_B   |
-|     3      |      NULL      |    NULL    |
-|     4      |      NULL      |    NULL    |
-|     5      | Yellow & Black | Power 24V- |
-|     6      |      Red       | Power 24V+ |
+| Serial No. | Color | Definition |
+| :--------: | :---: | :--------: |
+|     1      | Brown |  RS485_A   |
+|     2      | White |  RS485_B   |
+|     3      | NULL  |    NULL    |
+|     4      | NULL  |    NULL    |
+|     5      | Black | Power 24V- |
+|     6      |  Red  | Power 24V+ |
 
 Wiring method is as follows:
 ![ROHand_LSR wiring](res/wiring_realman_EN.png)
@@ -35,7 +35,7 @@ A: Please make sure the USB to RS485 module is provided by OYMotion, and test it
 
 ### 3.Q: What is the working voltage range of ROHand?
 
-A: ROHand can accept a working voltage range of 12 ~ 32V, rated power of 48W, and rated voltage of 24V. Please note that do not hot plug and unplug the power supply over 32V, otherwise it may cause damage to the electronic components.
+A: ROHand can accept a working voltage range of 12 ~ 32V, rated power of 48W, and rated voltage of 24V. Please note that do not hot plug and unplug the power supply over 32V, otherwise it may cause damage to the electronic components.If the power supply is lower than the rated power, the beep of the ROHand will be on and off, indicating that the power is too low.
 
 ### 4.Q: What is the current parameter of ROHand?
 
@@ -44,6 +44,10 @@ A: The static current of the first-generation ROHand under 24V voltage is 0.12A,
 ### 5. Q: Why is there a continuous current output in the finger at zero position and the thumb rotation cannot be zeroed?
 
 A: Due to the PID control algorithm inside the dexterous hand, when the motor position has internal or external reasons for error, the algorithm to make it maintain in the zero position, so there will be a continuous current output in the zero position, which is a normal phenomenon. Thumb rotation can not be zeroed in order to reduce the side of the hand skin accumulation of stress, set 1 ° offset angle to reduce the range of motion, also belongs to the normal phenomenon.
+
+### 6. Q：When ROHand do calibration, why do the fingers open to maximum angle?
+
+A: The dexterous hand performs a power on self-test and all fingers will open. If it encounters a situation where it cannot open, first check whether the finger structure is damaged, specifically whether the spring at the connection between the first and second joints of the finger is broken, whether the screw nut and the finger connection piece are detached, and whether there are objects or liquids inside the screw. If there is no such situation, check if the fingers interfere with each other, mainly occurring in the index finger and thumb.
 
 ## Software
 
@@ -61,7 +65,7 @@ A:The range of finger angles for each dexterous hand may vary slightly due to ma
 
 ### 4. Q: How can I simply tell if a dexterity hand is grabbing an object? Can it be judged by the force value?
 
-A: The force feedback function will be released in the next version of ROH-AP001. Currently, the force value of ROH-A001 is based on the motor current and torque curves, and it is not possible to accurately determine the force of the fingers after the mechanical structure is conducted. And the judgment to grab the object is through *read_holding_registers* instruction, read the finger status register *ROH_FINGER_STATUS0 ~ ROH_FINGER_STATUS5*, judge the motor status code is 5 (STATUS_STUCK) motor blocking, blocking is grabbing the object. Or by writing current limit value register *ROH_FINGER_CURRENT_LIMIT0 ~ ROH_FINGER_CURRENT_LIMIT5*, set the current limit value to a specific value, the motor stops running when the blocking current exceeds the limit value, and it will restart automatically after rewriting the value of target position.
+A: The ROH-AP001 dexterous hand has a force feedback function. Currently, the force value of ROH-A001/ROH-A002 is based on the motor current and torque curves, and it is not possible to accurately determine the force of the fingers after the mechanical structure is conducted. And the judgment to grab the object is through *read_holding_registers* instruction, read the finger status register *ROH_FINGER_STATUS0 ~ ROH_FINGER_STATUS5*, judge the motor status code is 5 (STATUS_STUCK) motor blocking, blocking is grabbing the object. Or by writing current limit value register *ROH_FINGER_CURRENT_LIMIT0 ~ ROH_FINGER_CURRENT_LIMIT5*, set the current limit value to a specific value, the motor stops running when the blocking current exceeds the limit value, and it will restart automatically after rewriting the value of target position.
 
 ### 5.Q: Why does the finger shake when it moves?
 
@@ -69,7 +73,7 @@ A:The ROHand uses a PID control algorithm internally. The shaking is caused by a
 
 ### 6.Q: What is the maximum baud rate and command processing frequency of ROHand?
 
-A:ROH-A001 dexterous hand supports a maximum baud rate of 115200. At this maximum baud rate, using a native USB-485 module can support a command processing frequency of around 60Hz. Using the specialized serial control protocol with compound commands, the frequency can reach around 90-100. The next generation dexterous hand supports automatic baud rate detection, with a maximum baud rate of up to 921600.
+A:ROH-A001/ROH-A002 dexterous hand RS485 supports a maximum baud rate of 115200. At this maximum baud rate, using a native USB-485 module can support a command processing frequency of around 60Hz. Using the specialized serial control protocol with compound commands, the frequency can reach around 90-100. CAN version ROHand supports a maximum baud rate of 1M. The ROH-AP001 dexterous hand supports automatic baud rate detection, with a maximum baud rate of up to 921600.
 
 ### 7. Q: What are the controls for the dexterous hand? How does each control convert?
 
@@ -77,11 +81,15 @@ A: ROH-A001 dexterous hand supports position control and angle control. Position
 
 ### 8. Q: Dexterous hand internal motor control algorithm is based on what parameters?
 
-A: The internal motor control of the Dexterous Hand is based on the PID control algorithm of the position loop to realize the precise control of the finger. It also detects the running speed and running current in real time, and the current value can be used as part of the factor to judge the motor blocking. When the motor is blocked for a long time, ROHand will heat up, the control logic can be optimized to reduce the heat, the strategy is to detect the blockage when no longer send commands greater than the current finger position, but send commands less than or equals to the current finger position until the blockage is lifted, refer to Appendix 3.
+A: The internal motor control of the Dexterous Hand is based on the PID control algorithm of the position loop to realize the precise control of the finger. It also detects the running speed and running current in real time, and the current value can be used as part of the factor to judge the motor blocking. When the motor is blocked for a long time, ROHand will heat up.The dexterous hand itself is equipped with a stall protection logic. After the stall current exceeds 500mA for a certain period of time, it will periodically repeat start stop to reach the target position. Besides, the control logic can be optimized to reduce the heat, the strategy is to detect the blockage when no longer send commands greater than the current finger position, but send commands less than or equals to the current finger position until the blockage is lifted, refer to Appendix 3.
 
 ### 9.Where can I install the driver for the USB-to-485 module? How does Ubuntu recognize it?
 
 A:The USB-to-485 module uses the CH340 chip, and the driver can be downloaded from [CH340 Driver](https://www.wch.cn/downloads/CH341SER_EXE.html).After Ubuntu detects the USB-to-485 module, it will automatically generate a serial port device file, typically located at /dev/ttyUSB0. You can check for connected devices using the command:*ls /dev/ttyUSB** .If no ttyUSB-related device appears, check whether another driver (e.g., brltty) is occupying the port.
+
+### 10. Q: How to avoid shaking and overheating?
+
+A: In addition to the methods in Appendix 3 that can effectively reduce finger blockage and heat transfer, if the dexterous hand is controlled through external motion capture devices, frequent sending of target positions/angles to the dexterous hand can cause it to shake and heat up. To avoid dexterous hand shaking and overheating, directional control is required, as shown in Appendix 4.
 
 ## Appendix
 
@@ -275,4 +283,41 @@ class Application:
 if __name__ == "__main__":
     app = Application()
     asyncio.run(app.main())
+```
+
+### 4. Examples of programs to avoid shaking and overheating with dexterous hands
+
+```python
+
+# The threshold for determining the change in target position is an integer in position control mode and a floating-point number in angle control mode
+TOLERANCE = 10 
+
+prev_dir = [0 for _ in range(NUM_FINGERS)]
+prev_finger_data = [0 for _ in range(NUM_FINGERS)]
+
+while True:
+    finger_data = get_latest_data() # Obtain target position/angle
+
+    dir = [0 for _ in range(NUM_FINGERS)]
+
+    for i in range(NUM_FINGERS):
+        if finger_data[i] > prev_finger_data[i] + TOLERANCE:
+            dir[i] = 1
+        elif finger_data[i] < prev_finger_data[i] - TOLERANCE:
+            dir[i] = -1
+
+        # Only send target position/angle when there is a change in direction
+        if dir[i] != prev_dir[i]:
+            prev_finger_data[i] = finger_data[i]
+            prev_dir[i] = dir[i]
+
+            if dir[i] == -1:
+                pos = 0
+            elif dir[i] == 0:
+                pos = finger_data[i]
+            else:
+                pos = 65535
+
+            resp = client.write_register(ROH_FINGER_POS_TARGET0 + i, pos, NODE_ID)
+            print(f"client.write_register({ROH_FINGER_POS_TARGET0 + i}, {pos}, {NODE_ID}) returned", resp)
 ```
