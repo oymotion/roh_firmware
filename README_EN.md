@@ -7,12 +7,12 @@ Firmware, protocol and desktop application for Robotic OHand，i.e.，ROH.
 - *[FAQs](FAQs)*: frequently asked questions
   - [FAQs.md](FAQs/FAQs_EN.md): FAQs in English
 - *[firmware](firmware)*: firmware update files
-  - files in subdirectory [ModBus-RTU](firmware/ModBus-RTU) are for ModBus-RTU version.
-  - files in subdirectory [SerialCtrl](firmware/SerialCtrl) are for SerialCtrl version, can process commands at 90Hz+.
-  - files in subdirectory [ModBus-RTU+SerialCtrl](firmware/ModBus-RTU+SerialCtrl) are for mixed version, recommended.
-  - files in subdirectory [Can](firmware/Can) are for Can verision.
+  - files in subdirectory [ROH-A001_ModBus-RTU](firmware/ROH-A001/ModBus-RTU) and [ROH-A002_ModBus-RTU](firmware/ROH-A002/ModBus-RTU) are ModBus RTU versions of ROH-A001 and ROH-A002, respectively.
+  - files in subdirectory [ROH-A001_SerialCtrl](firmware/ROH-A001/SerialCtrl) and [ROH-A002_SerialCtrl](firmware/ROH-A002/SerialCtrl) are SerialCtrl versions of ROH-A001 and ROH-A002, respectively, can process commands at 90Hz+.
+  - files in subdirectory [ROH-A001_ModBus-RTU+SerialCtrl](firmware/ROH-A001/ModBus-RTU+SerialCtrl) and [ROH-A002_ModBus-RTU+SerialCtrl](firmware/ROH-A001/ModBus-RTU+SerialCtrl) are for mixed version, respectively, recommended.
+  - files in subdirectory [ROH-A001_Can](firmware/ROH-A001/Can) 和 [ROH-A002_Can](firmware/ROH-A002/Can) are Can versions of ROH-A001 and ROH-A002, respectively.
   - [RELEASE_INFO.md](firmware/RELEASE_INFO.md): release information for each firmware version.
-- *[OHandSetting](OHandSetting)*: desktop application for Robotic OHand (also for Prosthetic OHand, so it's name is "OHandSetting"). WINDOWS only currently.
+- *[OHandSetting](OHandSetting)*: desktop application for Robotic OHand (also for Prosthetic OHand, so it's name is "OHandSetting"). Windows and Ubuntu system are supported currently.
   - [OHandSetting-User-Manual-V1.x.pdf](OHandSetting/OHandSetting-User-Manual-V1.1.pdf): User manual for desktop application.
 - *[protocol](protocol)*: protocol specification for ModBus-RTU and SerialCtrl versions
   - [OHandModBusRTUProtocol_EN.md](protocol/OHandModBusRTUProtocol_EN.md): ModBus-RTU protocol specification.

@@ -10,9 +10,9 @@ ROH 固件、协议文档和桌面端应用
   - 子目录中 [ROH-A001_ModBus-RTU](firmware/ROH-A001/ModBus-RTU) 和 [ROH-A002_ModBus-RTU](firmware/ROH-A002/ModBus-RTU) 文件分别为ROH-A001和ROH-A002的ModBus-RTU版本。
   - 子目录中 [ROH-A001_SerialCtrl](firmware/ROH-A001/SerialCtrl) 和 [ROH-A002_SerialCtrl](firmware/ROH-A002/SerialCtrl) 文件分别为ROH-A001和ROH-A002的SerialCtrl版本，能处理90Hz+频率的指令。
   - 子目录中 [ROH-A001_ModBus-RTU+SerialCtrl](firmware/ROH-A001/ModBus-RTU+SerialCtrl) 和 [ROH-A002_ModBus-RTU+SerialCtrl](firmware/ROH-A001/ModBus-RTU+SerialCtrl)文件分别为ROH-A001和ROH-A002的双协议混合版本，推荐使用。
-  - 子目录中 [ROH-A001_Can](firmware/ROH-A001/Can) 和 [ROH-A001_Can](firmware/ROH-A001/Can) 文件分别为ROH-A001和ROH-A002的Can协议版本。
+  - 子目录中 [ROH-A001_Can](firmware/ROH-A001/Can) 和 [ROH-A002_Can](firmware/ROH-A002/Can) 文件分别为ROH-A001和ROH-A002的Can协议版本。
   - [RELEASE_INFO.md](firmware/RELEASE_INFO.md): 每个固件版本的发布信息。
-- *[OHandSetting](OHandSetting)*: 机器人灵巧手(Robotic OHand)的桌面端应用(仿生手Prosthetic OHand也适用，因此命名OHandSetting)，目前仅支持 Windows 系统，Ubuntu版本在测试中。
+- *[OHandSetting](OHandSetting)*: 机器人灵巧手(Robotic OHand)的桌面端应用(仿生手Prosthetic OHand也适用，因此命名OHandSetting)，目前支持 Windows 系统 和 Ubuntu 系统。
   - [OHandSetting使用手册-V1.x.pdf](OHandSetting/OHandSetting使用手册-V1.1.pdf): 桌面端应用使用说明。
 - *[protocol](protocol)*: Modbus-RTU和SerialCtrl版本的协议格式
   - [OHandModBusRTUProtocol_CN.md](protocol/OHandModBusRTUProtocol_CN.md): ModBus-RTU 协议格式。
