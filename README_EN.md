@@ -13,7 +13,7 @@ Firmware, protocol and desktop application for Robotic OHand，i.e.，ROH.
   - files in subdirectory [ROH-A001_Can](firmware/ROH-A001/Can) 和 [ROH-A002_Can](firmware/ROH-A002/Can) are Can versions of ROH-A001 and ROH-A002, respectively.
   - [RELEASE_INFO.md](firmware/RELEASE_INFO.md): release information for each firmware version.
 - *[OHandSetting](OHandSetting)*: desktop application for Robotic OHand (also for Prosthetic OHand, so it's name is "OHandSetting"). Windows and Ubuntu system are supported currently.
-  - [OHandSetting-User-Manual-V1.x.pdf](OHandSetting/OHandSetting-User-Manual-V1.1.pdf): User manual for desktop application.
+  - [OHandSetting-User-Manual-V1.x.pdf](OHandSetting/OHandSetting-User-Manual-V1.2.pdf): User manual for desktop application.
 - *[protocol](protocol)*: protocol specification for ModBus-RTU and SerialCtrl versions
   - [OHandModBusRTUProtocol_EN.md](protocol/OHandModBusRTUProtocol_EN.md): ModBus-RTU protocol specification.
   - [OHandSerialProtocol_EN.md](protocol/OHandSerialProtocol_EN.md): SerialCtrl and Can protocol specification.
