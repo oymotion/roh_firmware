@@ -13,7 +13,7 @@ ROH 固件、协议文档和桌面端应用
   - 子目录中 [ROH-A001_Can](firmware/ROH-A001/Can) 和 [ROH-A002_Can](firmware/ROH-A002/Can) 文件分别为ROH-A001和ROH-A002的Can协议版本。
   - [RELEASE_INFO.md](firmware/RELEASE_INFO.md): 每个固件版本的发布信息。
 - *[OHandSetting](OHandSetting)*: 机器人灵巧手(Robotic OHand)的桌面端应用(仿生手Prosthetic OHand也适用，因此命名OHandSetting)，目前支持 Windows 系统 和 Ubuntu 系统。
-  - [OHandSetting使用手册-V1.x.pdf](OHandSetting/OHandSetting使用手册-V1.2.pdf): 桌面端应用使用说明。
+  - [OHandSetting使用手册-V1.x.pdf](OHandSetting/OHandSetting使用手册-V1.3.pdf): 桌面端应用使用说明。
 - *[protocol](protocol)*: Modbus-RTU和SerialCtrl版本的协议格式
   - [OHandModBusRTUProtocol_CN.md](protocol/OHandModBusRTUProtocol_CN.md): ModBus-RTU 协议格式。
   - [OHandSerialProtocol_CN.md](protocol/OHandSerialProtocol_CN.md): SerialCtrl 和 Can 协议格式。
