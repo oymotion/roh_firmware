@@ -164,22 +164,22 @@ RS232、RS485 通讯参数都是 115200bps、8 数据位、1 停止位、无奇�
 | ROH_CALI_THUMB_POS2           |       1042 | R/W       | 出厂校正值         | 大拇指对掌位 2 预设位置（绝对位置，uint16），设置时保存到非易失存储器，用户无需设置                                              |
 | ROH_CALI_THUMB_POS3           |       1043 | R/W       |                    | 保留                                                                                                                             |
 | ROH_CALI_THUMB_POS4           |       1044 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_P0                 |       1045 | R/W       | 500 \* 100         | 大拇指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                         |
-| ROH_FINGER_P1                 |       1046 | R/W       | 500 \* 100         | 食指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                           |
-| ROH_FINGER_P2                 |       1047 | R/W       | 500 \* 100         | 中指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                           |
-| ROH_FINGER_P3                 |       1048 | R/W       | 500 \* 100         | 无名指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                         |
-| ROH_FINGER_P4                 |       1049 | R/W       | 500 \* 100         | 小指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                           |
-| ROH_FINGER_P5                 |       1050 | R/W       | 500 \* 100         | 大拇指旋转 P 值\*100（uint16），设置时保存到非易失存储器                                                                         |
+| ROH_FINGER_P0                 |       1045 | R/W       | 250 \* 100         | 大拇指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                         |
+| ROH_FINGER_P1                 |       1046 | R/W       | 250 \* 100         | 食指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_P2                 |       1047 | R/W       | 250 \* 100         | 中指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_P3                 |       1048 | R/W       | 250 \* 100         | 无名指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                         |
+| ROH_FINGER_P4                 |       1049 | R/W       | 250 \* 100         | 小指弯曲 P 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_P5                 |       1050 | R/W       | 250 \* 100         | 大拇指旋转 P 值\*100（uint16），设置时保存到非易失存储器                                                                         |
 | ROH_FINGER_P6                 |       1051 | R/W       |                    | 保留                                                                                                                             |
 | ROH_FINGER_P7                 |       1052 | R/W       |                    | 保留                                                                                                                             |
 | ROH_FINGER_P8                 |       1053 | R/W       |                    | 保留                                                                                                                             |
 | ROH_FINGER_P9                 |       1054 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_I0                 |       1055 | R/W       | 1 \* 100           | 大拇指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                         |
-| ROH_FINGER_I1                 |       1056 | R/W       | 1 \* 100           | 食指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                           |
-| ROH_FINGER_I2                 |       1057 | R/W       | 1 \* 100           | 中指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                           |
-| ROH_FINGER_I3                 |       1058 | R/W       | 1 \* 100           | 无名指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                         |
-| ROH_FINGER_I4                 |       1059 | R/W       | 1 \* 100           | 小指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                           |
-| ROH_FINGER_I5                 |       1060 | R/W       | 1 \* 100           | 大拇指旋转 I 值\*100（uint16），设置时保存到非易失存储器                                                                         |
+| ROH_FINGER_I0                 |       1055 | R/W       | 2 \* 100           | 大拇指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                         |
+| ROH_FINGER_I1                 |       1056 | R/W       | 2 \* 100           | 食指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_I2                 |       1057 | R/W       | 2 \* 100           | 中指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_I3                 |       1058 | R/W       | 2 \* 100           | 无名指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                         |
+| ROH_FINGER_I4                 |       1059 | R/W       | 2 \* 100           | 小指弯曲 I 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_I5                 |       1060 | R/W       | 2 \* 100           | 大拇指旋转 I 值\*100（uint16），设置时保存到非易失存储器                                                                         |
 | ROH_FINGER_I6                 |       1061 | R/W       |                    | 保留                                                                                                                             |
 | ROH_FINGER_I7                 |       1062 | R/W       |                    | 保留                                                                                                                             |
 | ROH_FINGER_I8                 |       1063 | R/W       |                    | 保留                                                                                                                             |
@@ -195,10 +195,10 @@ RS232、RS485 通讯参数都是 115200bps、8 数据位、1 停止位、无奇�
 | ROH_FINGER_D8                 |       1073 | R/W       |                    | 保留                                                                                                                             |
 | ROH_FINGER_D9                 |       1074 | R/W       |                    | 保留                                                                                                                             |
 | ROH_FINGER_G0                 |       1075 | R/W       | 1.00 \* 100        | 大拇指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                         |
-| ROH_FINGER_G1                 |       1076 | R/W       | 0.10 \* 100        | 食指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                           |
-| ROH_FINGER_G2                 |       1077 | R/W       | 0.10 \* 100        | 中指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                           |
-| ROH_FINGER_G3                 |       1078 | R/W       | 0.10 \* 100        | 无名指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                         |
-| ROH_FINGER_G4                 |       1079 | R/W       | 0.10 \* 100        | 小指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_G1                 |       1076 | R/W       | 1.00 \* 100        | 食指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_G2                 |       1077 | R/W       | 1.00 \* 100        | 中指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                           |
+| ROH_FINGER_G3                 |       1078 | R/W       | 1.00 \* 100        | 无名指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                         |
+| ROH_FINGER_G4                 |       1079 | R/W       | 1.00 \* 100        | 小指弯曲 G 值\*100（uint16），设置时保存到非易失存储器                                                                           |
 | ROH_FINGER_G5                 |       1080 | R/W       | 1.00 \* 100        | 大拇指旋转 G 值\*100（uint16），设置时保存到非易失存储器                                                                         |
 | ROH_FINGER_G6                 |       1081 | R/W       |                    | 保留                                                                                                                             |
 | ROH_FINGER_G7                 |       1082 | R/W       |                    | 保留                                                                                                                             |
@@ -294,100 +294,10 @@ RS232、RS485 通讯参数都是 115200bps、8 数据位、1 停止位、无奇�
 | ROH_FINGER_ANGLE7             |       1172 | R         |                    | 保留                                                                                                                             |
 | ROH_FINGER_ANGLE8             |       1173 | R         |                    | 保留                                                                                                                             |
 | ROH_FINGER_ANGLE9             |       1174 | R         |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_SPEED0        |       1175 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED1        |       1176 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED2        |       1177 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED3        |       1178 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED4        |       1179 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED5        |       1180 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED6        |       1181 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED7        |       1182 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED8        |       1183 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_SPEED9        |       1184 | R/W       |                    |                                                                                                                                  |
-| ROH_FINGER_STOP_CURRENT0      |       1185 | R/W       | 200                | 大拇指弯曲电机堵转停机电流限制值（uint16），单位 mA，开机时恢复为默认值                                                          |
-| ROH_FINGER_STOP_CURRENT1      |       1186 | R/W       | 200                | 食指弯曲电机堵转停机电流限制值（uint16），单位 mA，开机时恢复为默认值                                                            |
-| ROH_FINGER_STOP_CURRENT2      |       1187 | R/W       | 200                | 中指弯曲电机堵转停机电流限制值（uint16），单位 mA，开机时恢复为默认值                                                            |
-| ROH_FINGER_STOP_CURRENT3      |       1188 | R/W       | 200                | 无名指弯曲电机堵转停机电流限制值（uint16），单位 mA，开机时恢复为默认值                                                          |
-| ROH_FINGER_STOP_CURRENT4      |       1189 | R/W       | 200                | 小指弯曲电机堵转停机电流限制值（uint16），单位 mA，开机时恢复为默认值                                                            |
-| ROH_FINGER_STOP_CURRENT5      |       1190 | R/W       | 200                | 大拇指旋转电机堵转停机电流限制值（uint16），单位 mA，开机时恢复为默认值                                                          |
-| ROH_FINGER_STOP_CURRENT6      |       1191 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_CURRENT7      |       1192 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_CURRENT8      |       1193 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_CURRENT9      |       1194 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_AFTER_PERIOD0 |       1195 | R/W       | 300                | 大拇指弯曲电机堵转停机时间（uint16），单位 ms，开机时恢复为默认值                                                                |
-| ROH_FINGER_STOP_AFTER_PERIOD1 |       1196 | R/W       | 300                | 食指弯曲电机堵转停机时间（uint16），单位 ms，开机时恢复为默认值                                                                  |
-| ROH_FINGER_STOP_AFTER_PERIOD2 |       1197 | R/W       | 300                | 中指弯曲电机堵转停机时间（uint16），单位 ms，开机时恢复为默认值                                                                  |
-| ROH_FINGER_STOP_AFTER_PERIOD3 |       1198 | R/W       | 300                | 无名指弯曲电机堵转停机时间（uint16），单位 ms，开机时恢复为默认值                                                                |
-| ROH_FINGER_STOP_AFTER_PERIOD4 |       1199 | R/W       | 300                | 小指弯曲电机堵转停机时间（uint16），单位 ms，开机时恢复为默认值                                                                  |
-| ROH_FINGER_STOP_AFTER_PERIOD5 |       1200 | R/W       | 300                | 大拇指旋转电机堵转停机时间（uint16），单位 ms，开机时恢复为默认值                                                                |
-| ROH_FINGER_STOP_AFTER_PERIOD6 |       1201 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_AFTER_PERIOD7 |       1202 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_AFTER_PERIOD8 |       1203 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_AFTER_PERIOD9 |       1204 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_RETRY_PERIOD0 |       1205 | R/W       | 500                | 大拇指弯曲电机堵转停机重试时间（uint16），单位 ms，开机时恢复为默认值                                                            |
-| ROH_FINGER_STOP_RETRY_PERIOD1 |       1206 | R/W       | 500                | 食指弯曲电机堵转停机重试时间（uint16），单位 ms，开机时恢复为默认值                                                              |
-| ROH_FINGER_STOP_RETRY_PERIOD2 |       1207 | R/W       | 500                | 中指弯曲电机堵转停机重试时间（uint16），单位 ms，开机时恢复为默认值                                                              |
-| ROH_FINGER_STOP_RETRY_PERIOD3 |       1208 | R/W       | 500                | 无名指弯曲电机堵转停机重试时间（uint16），单位 ms，开机时恢复为默认值                                                            |
-| ROH_FINGER_STOP_RETRY_PERIOD4 |       1209 | R/W       | 500                | 小指弯曲电机堵转停机重试时间（uint16），单位 ms，开机时恢复为默认值                                                              |
-| ROH_FINGER_STOP_RETRY_PERIOD5 |       1210 | R/W       | 500                | 大拇指旋转电机堵转停机重试时间（uint16），单位 ms，开机时恢复为默认值                                                            |
-| ROH_FINGER_STOP_RETRY_PERIOD6 |       1211 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_RETRY_PERIOD7 |       1212 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_RETRY_PERIOD8 |       1213 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_STOP_RETRY_PERIOD9 |       1214 | R/W       |                    | 保留                                                                                                                             |
-| ROH_FINGER_FORCE_EX0          |       2000 | R         |                    | 第0个力传感器第一个数据，详细定义参见后续说明                                                                                    |
-| ...                           |        ... | R         |                    | 第0个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX0_END      |       2099 | R         |                    | 第0个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX1          |       2100 | R         |                    | 第1个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第1个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX1_END      |       2199 | R         |                    | 第1个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX2          |       2200 | R         |                    | 第2个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第2个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX2_END      |       2299 | R         |                    | 第2个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX3          |       2300 | R         |                    | 第3个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第3个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX3_END      |       2399 | R         |                    | 第3个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX4          |       2400 | R         |                    | 第4个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第4个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX4_END      |       2499 | R         |                    | 第4个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX5          |       2500 | R         |                    | 第5个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第5个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX5_END      |       2599 | R         |                    | 第5个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX6          |       2600 | R         |                    | 第6个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第6个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX6_END      |       2699 | R         |                    | 第6个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX7          |       2700 | R         |                    | 第7个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第7个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX7_END      |       2799 | R         |                    | 第7个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX8          |       2800 | R         |                    | 第8个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第8个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX8_END      |       2899 | R         |                    | 第8个力传感器最后一个数据                                                                                                        |
-| ROH_FINGER_FORCE_EX9          |       2900 | R         |                    | 第9个力传感器第一个数据                                                                                                          |
-| ...                           |        ... | R         |                    | 第9个力传感器数据                                                                                                                |
-| ROH_FINGER_FORCE_EX9_END      |       2999 | R         |                    | 第9个力传感器最后一个数据                                                                                                        |
-
-*说明：*
-
-ROH_FINGER_FORCE_EX0 到 ROH_FINGER_FORCE_EX9 为各个力传感器数据的起始地址，每个传感器实际的数据长度和硬件相关，每个数据为 uint16 类型。
-
-1. 点阵版本：
-   大拇指12 \* 5个字节，对应30个寄存器数据，第一个寄存器数据低8位为首个数据字节，每个字节独立表示力的大小，单位为10mN，以此类推；
-   食指12 \* 5个字节；
-   中指12 \* 5个字节；
-   无名指12 \* 5个字节；
-   小指8 \* 4个字节；
-   手掌12 \* 5个字节。
-
-2. 三维力版本：
-   待定
-
-3. 一维力版本：
-   uint16 数据，表示力的大小，单位10mN。
 
 附寄存器C/C++宏定义：
 
 ```C
-
-#define FORCE_GROUP_SIZE              (100)
 
 /* ModBus-RTU registers */   
 
@@ -566,62 +476,10 @@ ROH_FINGER_FORCE_EX0 到 ROH_FINGER_FORCE_EX9 为各个力传感器数据的起�
 #define ROH_FINGER_ANGLE7             (1172) /* R   */
 #define ROH_FINGER_ANGLE8             (1173) /* R   */
 #define ROH_FINGER_ANGLE9             (1174) /* R   */
-#define ROH_FINGER_STOP_SPEED0        (1175) /* R/W */
-#define ROH_FINGER_STOP_SPEED1        (1176) /* R/W */
-#define ROH_FINGER_STOP_SPEED2        (1177) /* R/W */
-#define ROH_FINGER_STOP_SPEED3        (1178) /* R/W */
-#define ROH_FINGER_STOP_SPEED4        (1179) /* R/W */
-#define ROH_FINGER_STOP_SPEED5        (1180) /* R/W */
-#define ROH_FINGER_STOP_SPEED6        (1181) /* R/W */
-#define ROH_FINGER_STOP_SPEED7        (1182) /* R/W */
-#define ROH_FINGER_STOP_SPEED8        (1183) /* R/W */
-#define ROH_FINGER_STOP_SPEED9        (1184) /* R/W */
-#define ROH_FINGER_STOP_CURRENT0      (1185) /* R/W */
-#define ROH_FINGER_STOP_CURRENT1      (1186) /* R/W */
-#define ROH_FINGER_STOP_CURRENT2      (1187) /* R/W */
-#define ROH_FINGER_STOP_CURRENT3      (1188) /* R/W */
-#define ROH_FINGER_STOP_CURRENT4      (1189) /* R/W */
-#define ROH_FINGER_STOP_CURRENT5      (1190) /* R/W */
-#define ROH_FINGER_STOP_CURRENT6      (1191) /* R/W */
-#define ROH_FINGER_STOP_CURRENT7      (1192) /* R/W */
-#define ROH_FINGER_STOP_CURRENT8      (1193) /* R/W */
-#define ROH_FINGER_STOP_CURRENT9      (1194) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD0 (1195) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD1 (1196) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD2 (1197) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD3 (1198) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD4 (1199) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD5 (1200) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD6 (1201) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD7 (1202) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD8 (1203) /* R/W */
-#define ROH_FINGER_STOP_AFTER_PERIOD9 (1204) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD0 (1205) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD1 (1206) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD2 (1207) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD3 (1208) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD4 (1209) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD5 (1210) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD6 (1211) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD7 (1212) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD8 (1213) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD9 (1214) /* R/W */
 
-#define ROH_FINGER_FORCE_EX0          (2000 + 0 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX1          (2000 + 1 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX2          (2000 + 2 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX3          (2000 + 3 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX4          (2000 + 4 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX5          (2000 + 5 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX6          (2000 + 6 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX7          (2000 + 7 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX8          (2000 + 8 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX9          (2000 + 9 * FORCE_GROUP_SIZE) /* R   */
 ```
 
 ```Python
-# Define
-FORCE_GROUP_SIZE              = (100)  # Max entries count for each force sensor
 
 # ModBus-RTU registers for ROH
 
@@ -800,57 +658,7 @@ ROH_FINGER_ANGLE6             = (1171) # R
 ROH_FINGER_ANGLE7             = (1172) # R
 ROH_FINGER_ANGLE8             = (1173) # R
 ROH_FINGER_ANGLE9             = (1174) # R
-ROH_FINGER_STOP_SPEED0        = (1175) # R/W
-ROH_FINGER_STOP_SPEED1        = (1176) # R/W
-ROH_FINGER_STOP_SPEED2        = (1177) # R/W
-ROH_FINGER_STOP_SPEED3        = (1178) # R/W
-ROH_FINGER_STOP_SPEED4        = (1179) # R/W
-ROH_FINGER_STOP_SPEED5        = (1180) # R/W
-ROH_FINGER_STOP_SPEED6        = (1181) # R/W
-ROH_FINGER_STOP_SPEED7        = (1182) # R/W
-ROH_FINGER_STOP_SPEED8        = (1183) # R/W
-ROH_FINGER_STOP_SPEED9        = (1184) # R/W
-ROH_FINGER_STOP_CURRENT0      = (1185) # R/W
-ROH_FINGER_STOP_CURRENT1      = (1186) # R/W
-ROH_FINGER_STOP_CURRENT2      = (1187) # R/W
-ROH_FINGER_STOP_CURRENT3      = (1188) # R/W
-ROH_FINGER_STOP_CURRENT4      = (1189) # R/W
-ROH_FINGER_STOP_CURRENT5      = (1190) # R/W
-ROH_FINGER_STOP_CURRENT6      = (1191) # R/W
-ROH_FINGER_STOP_CURRENT7      = (1192) # R/W
-ROH_FINGER_STOP_CURRENT8      = (1193) # R/W
-ROH_FINGER_STOP_CURRENT9      = (1194) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD0 = (1195) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD1 = (1196) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD2 = (1197) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD3 = (1198) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD4 = (1199) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD5 = (1200) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD6 = (1201) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD7 = (1202) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD8 = (1203) # R/W
-ROH_FINGER_STOP_AFTER_PERIOD9 = (1204) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD0 = (1205) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD1 = (1206) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD2 = (1207) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD3 = (1208) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD4 = (1209) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD5 = (1210) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD6 = (1211) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD7 = (1212) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD8 = (1213) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD9 = (1214) # R/W
 
-ROH_FINGER_FORCE_EX0          = (2000 + 0 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX1          = (2000 + 1 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX2          = (2000 + 2 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX3          = (2000 + 3 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX4          = (2000 + 4 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX5          = (2000 + 5 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX6          = (2000 + 6 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX7          = (2000 + 7 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX8          = (2000 + 8 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX9          = (2000 + 9 * FORCE_GROUP_SIZE) # R
 ```
 
 ### 4.2. ROH_FINGER_ANGLE_TARGET 和 ROH_FINGER_POS 角度

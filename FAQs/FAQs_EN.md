@@ -1,99 +1,207 @@
-# ROHand Q&A
+# ROHand FAQ
 
 ## Hardware
 
-### 1.Q:How to connect ROHand?
+### 1. Q: How do I connect ROHand?
 
-A: ROHand has a four-core cable connected from the wrist, the color definition is:
+**A:** ROHand uses a four-core cable from the wrist with this color coding:
 
-| Color |  Definition   |
-| :---: | :-----------: |
-|  Red  |  Power 24V+   |
-| Black |  Power 24V-   |
+| Color | Definition    |
+| :---: | :------------ |
+|  Red  | Power 24 V+   |
+| Black | Power 24 V-   |
 | Brown | RS485_A/CAN_L |
 | White | RS485_B/CAN_H |
 
-When the power supply of the host and the ROHand is not the same power supply, it is necessary to connect the ROHand and the host to the same ground, that is, short-circuit the negative power supply of the power supply and the GND of the USB to 485 module.
+**Important:** When using separate power supplies for host and ROHand, establish common ground by shorting the power supply negative to the USB-to-485 module's GND.
+
 ![ROHand_LS wiring](res/wiring_EN.png)
-When ROHand is connected to other devices, such as a robotic arm, for example, the RM65 robotic arm, the test line color definition is:
 
-| Serial No. | Color | Definition |
-| :--------: | :---: | :--------: |
-|     1      | Brown |  RS485_A   |
-|     2      | White |  RS485_B   |
-|     3      | NULL  |    NULL    |
-|     4      | NULL  |    NULL    |
-|     5      | Black | Power 24V- |
-|     6      |  Red  | Power 24V+ |
+**Connection to robotic arms (e.g., RM65):**
 
-Wiring method is as follows:
+|  Pin  | Color | Definition    |
+| :---: | :---: | :------------ |
+|   1   | Brown | RS485_A       |
+|   2   | White | RS485_B       |
+|   3   |   -   | Not connected |
+|   4   |   -   | Not connected |
+|   5   | Black | Power 24 V-   |
+|   6   |  Red  | Power 24 V+   |
+
+Wiring diagram:  
 ![ROHand_LSR wiring](res/wiring_realman_EN.png)
 
-### 2. Q: How to solve the problem that ROHand communication is abnormal and cannot be upgraded?
+---
 
-A: Please make sure the USB to RS485 module is provided by OYMotion, and test it according to the following process: When the communication of ROHand is abnormal, or the upgrade fails when upgrading the firmware, please firstly, check the wiring connection with or without poor contact or disconnection, and secondly, make sure the power supply and the USB to RS485 module have been processed with a common ground, please refer to the wiring diagram above. If the wiring connection is correct, but the communication is still abnormal, please try to connect the 120Ω termination resistor, i.e. short the A port and R port of the provided USB to RS485 module. If the problem still cannot be solved, please contact technical support.
+### 2. Q: How do I troubleshoot ROHand communication issues or failed firmware updates?
 
-### 3.Q: What is the working voltage range of ROHand?
+**A:** Follow these steps:
 
-A: ROHand can accept a working voltage range of 12 ~ 32V, rated power of 48W, and rated voltage of 24V. Please note that do not hot plug and unplug the power supply over 32V, otherwise it may cause damage to the electronic components.If the power supply is lower than the rated power, the beep of the ROHand will be on and off, indicating that the power is too low.
+1. Confirm you're using OYMotion's USB-to-RS485 module
+2. Check for loose connections or damaged wiring
+3. Verify proper common grounding (refer to wiring diagram)
+4. If issues persist, connect the 120Ω termination resistor by shorting A and R ports(port 2 and port 3). As shown in the following figure:
+   ![120Ω resistor](res/terminal_resistor.png)
+5. Contact technical support if problems continue
 
-### 4.Q: What is the current parameter of ROHand?
+---
 
-A: The static current of the first-generation ROHand under 24V voltage is 0.12A, the average current under no-load motion is 0.25A, and the maximum gripping current under maximum gripping force is 1.9A.
+### 3. Q: What is ROHand's operating voltage range?
 
-### 5. Q: Why is there a continuous current output in the finger at zero position and the thumb rotation cannot be zeroed?
+**A:** ROHand operates at 12-26 V DC with these specifications:
 
-A: Due to the PID control algorithm inside the dexterous hand, when the motor position has internal or external reasons for error, the algorithm to make it maintain in the zero position, so there will be a continuous current output in the zero position, which is a normal phenomenon. Thumb rotation can not be zeroed in order to reduce the side of the hand skin accumulation of stress, set 1 ° offset angle to reduce the range of motion, also belongs to the normal phenomenon.
+- Rated voltage: 24 V
+- Rated power: 48 W  
+**Note:** The buzzer pulses when voltage drops below required levels.
 
-### 6. Q：When ROHand do calibration, why do the fingers open to maximum angle?
+---
 
-A: The dexterous hand performs a power on self-test and all fingers will open. If it encounters a situation where it cannot open, first check whether the finger structure is damaged, specifically whether the spring at the connection between the first and second joints of the finger is broken, whether the screw nut and the finger connection piece are detached, and whether there are objects or liquids inside the screw. If there is no such situation, check if the fingers interfere with each other, mainly occurring in the index finger and thumb.
+### 4. Q: What are ROHand's current specifications?
+
+**A:** (At 24 V):
+
+- Standby current: ~0.12 A
+- No-load motion current: ~0.25 A
+- Peak gripping current: ~2.0 A
+
+---
+
+### 5. Q: Why is there continuous current at the zero position, and why won't the thumb rotation zero completely?
+
+**A:** This is normal behavior:
+
+- PID control maintains position accuracy at zero
+- Thumb has a deliberate 1° offset to reduce skin stress
+
+---
+
+### 6. Q: Why do fingers extend fully during self-test?
+
+**A:** The startup self-test extends all fingers. If fingers don't extend:
+
+1. Check for mechanical damage:
+   - Broken springs between joints
+   - Detached screw nuts/connectors
+   - Debris in screw mechanisms
+2. Check for finger interference (thumb/index finger)
+
+---
 
 ## Software
 
-### 1.Q: How to program ROHand?
+### 1. Q: How do I program ROHand?
 
-A:Based on the ModBus-RTU protocol, use the *write_registers* command to write to the finger position registers *ROH_FINGER_POS_TARGET0 ~ ROH_FINGER_POS_TARGET5*. These correspond to the bending of the thumb, index finger, middle finger, ring finger, little finger, and thumb rotation, respectively. The register values range from 0 to 65535, where 0 indicates the finger is fully extended and 65535 indicates the finger is fully bent. For thumb rotation, 0 represents 0° side palm position, and 65535 represents 90° palm position. For details, please refer to [roh_registers_v1.h](roh_registers_v1.h)/[roh_registers_v1.py](roh_registers_v1.py). Example code is provided in Appendix 1.
+**A:** Use ModBus-RTU protocol to write to position registers:
 
-### 2.Q: How to get the finger angle and control the finger angle?
+- Registers: `ROH_FINGER_POS_TARGET0` to `ROH_FINGER_POS_TARGET5`
+- Values: 0 (fully open) to 65535 (fully closed)  
+Thumb rotation: 0 (0° side) to 65535 (90° palm) at  
 
-A:To get the finger angles, read the finger angle registers *ROH_FINGER_ANGLE0 ~ ROH_FINGER_ANGLE5*. The values are signed integers ranging from -32768 to 32767, representing the actual angle multiplied by 100. To control the finger angles, write to the finger angle target registers *ROH_FINGER_ANGLE_TARGET0 ~ ROH_FINGER_ANGLE_TARGET5*. The input values are also signed integers ranging from -32768 to 32767, representing the actual angle multiplied by 100. For example, to bend the index finger to 101.01°, write 10101 to the *ROH_FINGER_ANGLE_TARGET1* register. At this point, reading the *ROH_FINGER_ANGLE1* register will return 10101, indicating that the finger angle is 101.01°. The default finger angle is the angle between the first joint of the finger and the palm plane. For detailed definitions, please refer to the [OHandModBusRTUProtocol_EN.md](OHandModBusRTUProtocol_EN.md) protocol documentation.
+Reference:  
+[roh_registers_v1.h](../protocol/roh_registers_v1.h) / [roh_registers_v1.py](../protocol/roh_registers_v1.py)  
+Sample code: [Appendix 1](#appendix-1-basic-control)
 
-### 3.Q： How to get the finger angle range?
+---
 
-A:The range of finger angles for each dexterous hand may vary slightly due to manufacturing differences. To get the actual angle range, write 0 and 65535 to the *ROH_FINGER_POS_TARGET0 ~ ROH_FINGER_POS_TARGET5* registers, corresponding to the maximum and minimum angles of the fingers, respectively. At this point, reading the *ROH_FINGER_ANGLE0 ~ ROH_FINGER_ANGLE5* registers will provide the actual upper and lower limits of the angles. For example, writing 0 to *ROH_FINGER_POS_TARGET1* will extend the index finger, and writing 65535 will bend it to its maximum extent. The resulting values in the *ROH_FINGER_ANGLE1* register will indicate the actual angles. The default finger angle is the angle between the first joint of the finger and the palm plane. For detailed definitions, please refer to the [OHandModBusRTUProtocol_EN.md](OHandModBusRTUProtocol_EN.md) protocol documentation. Example code is provided in Appendix 2.
+### 2. Q: How do I read/control finger angles?
 
-### 4. Q: How can I simply tell if a dexterity hand is grabbing an object? Can it be judged by the force value?
+**A:**
+**Read angles:**  
+Registers `ROH_FINGER_ANGLE0` to `ROH_FINGER_ANGLE5`  
+Values: Signed integers ÷ 100 = actual angle
 
-A: The ROH-AP001 dexterous hand has a force feedback function. Currently, the force value of ROH-A001/ROH-A002 is based on the motor current and torque curves, and it is not possible to accurately determine the force of the fingers after the mechanical structure is conducted. And the judgment to grab the object is through *read_holding_registers* instruction, read the finger status register *ROH_FINGER_STATUS0 ~ ROH_FINGER_STATUS5*, judge the motor status code is 5 (STATUS_STUCK) motor blocking, blocking is grabbing the object. Or by writing current limit value register *ROH_FINGER_CURRENT_LIMIT0 ~ ROH_FINGER_CURRENT_LIMIT5*, set the current limit value to a specific value, the motor stops running when the blocking current exceeds the limit value, and it will restart automatically after rewriting the value of target position.
+**Set angles:**  
+Write to `ROH_FINGER_ANGLE_TARGET0` to `ROH_FINGER_ANGLE_TARGET5`  
+Input: Signed integers = desired angle × 100  
 
-### 5.Q: Why does the finger shake when it moves?
+**Example:**  
+Set index finger to 101.01° → Write 10101 to `ROH_FINGER_ANGLE_TARGET1`  
 
-A:The ROHand uses a PID control algorithm internally. The shaking is caused by an inappropriate setting of the PID parameters. It is recommended that users adjust the PID parameters in the OHandSetting directory on the desktop using the OHandSetting.exe tool according to their actual usage scenarios to make the dexterous hand's movement smoother.
+**Note:** Angles measured between first joint and palm plane.  
+Protocol: [OHandModBusRTUProtocol_CN.md](../protocol/OHandModBusRTUProtocol_CN.md)
 
-### 6.Q: What is the maximum baud rate and command processing frequency of ROHand?
+---
 
-A:ROH-A001/ROH-A002 dexterous hand RS485 supports a maximum baud rate of 115200. At this maximum baud rate, using a native USB-485 module can support a command processing frequency of around 60Hz. Using the specialized serial control protocol with compound commands, the frequency can reach around 90-100. CAN version ROHand supports a maximum baud rate of 1M. The ROH-AP001 dexterous hand supports automatic baud rate detection, with a maximum baud rate of up to 921600.
+### 3. Q: How do I determine finger angle ranges?
 
-### 7. Q: What are the controls for the dexterous hand? How does each control convert?
+**A:** Actual ranges vary per unit. To measure:  
 
-A: ROH-A001 dexterous hand supports position control and angle control. Position control directly controls the motor screw's position, which is divided into logical position and absolute position. The absolute position is the value of the motor encoder after factory calibration. Logical position, on the other hand, is the value after mapping the range of absolute position to 0-65535. The essence of finger angle control is that the input angle is derived from the formula and then converted to the corresponding absolute position to control the motor, and vice versa, the finger angle can also be deduced from the motor screw position.
+1. Write 0 to `ROH_FINGER_POS_TARGETx` → Read `ROH_FINGER_ANGLEX` (max  angle)
+2. Write 65535 → Read register (min angle)  
 
-### 8. Q: Dexterous hand internal motor control algorithm is based on what parameters?
+Sample code: [Appendix 2](#appendix-2-measure-angle-ranges)
 
-A: The internal motor control of the Dexterous Hand is based on the PID control algorithm of the position loop to realize the precise control of the finger. It also detects the running speed and running current in real time, and the current value can be used as part of the factor to judge the motor blocking. When the motor is blocked for a long time, ROHand will heat up.The dexterous hand itself is equipped with a stall protection logic. After the stall current exceeds 500mA for a certain period of time, it will periodically repeat start stop to reach the target position. Besides, the control logic can be optimized to reduce the heat, the strategy is to detect the blockage when no longer send commands greater than the current finger position, but send commands less than or equals to the current finger position until the blockage is lifted, refer to Appendix 3.
+---
 
-### 9.Where can I install the driver for the USB-to-485 module? How does Ubuntu recognize it?
+### 4. Q: How can I detect object grasping?
 
-A:The USB-to-485 module uses the CH340 chip, and the driver can be downloaded from [CH340 Driver](https://www.wch.cn/downloads/CH341SER_EXE.html).After Ubuntu detects the USB-to-485 module, it will automatically generate a serial port device file, typically located at /dev/ttyUSB0. You can check for connected devices using the command:*ls /dev/ttyUSB** .If no ttyUSB-related device appears, check whether another driver (e.g., brltty) is occupying the port.
+**A:** Use `ROH_FINGER_STATUSx`to detect contact:
 
-### 10. Q: How to avoid shaking and overheating?
+- Detect grasping via `ROH_FINGER_STATUS0`-`ROH_FINGER_STATUS5`
+- Status code 5 (`STATUS_STUCK`) indicates contact
 
-A: In addition to the methods in Appendix 3 that can effectively reduce finger blockage and heat transfer, if the dexterous hand is controlled through external motion capture devices, frequent sending of target positions/angles to the dexterous hand can cause it to shake and heat up. To avoid dexterous hand shaking and overheating, directional control is required, as shown in Appendix 4.
+---
 
-## Appendix
+### 5. Q: Why do fingers shake during movement?
 
-### 1.Example python code for controlling the dexterous hand
+**A:** Caused by suboptimal PID tuning. Adjust parameters using OHandSetting.exe.
+
+---
+
+### 6. Q: What are ROHand's maximum baud rate and command frequency?
+
+**A:**
+
+- **RS485:** 112500 bps
+- At 115200 bps: 60 Hz command rate
+- With bundling: 90-100 Hz
+- **CAN:** 1 Mbps baud rate
+
+---
+
+### 7. Q: What control modes are available?
+
+**A:** Supports:
+
+- **Position Control:** Direct motor positioning
+- **Angle Control:** Converts angles to positions
+
+---
+
+### 8. Q: What algorithm controls the motors?
+
+**A:** PID-based position control with:
+
+- Real-time speed/current monitoring
+- Stall protection (>500mA → pulsed retries)
+- Heat reduction logic: [Appendix 3](#appendix-3-reduce-heat-from-motor-stalls)
+
+---
+
+### 9. Q: How do I install USB-to-485 drivers on Ubuntu?
+
+**A:**
+
+1. Install CH340 driver: [Download](https://www.wch.cn/downloads/CH341SER_EXE.html)
+2. Device appears as `/dev/ttyUSB0`
+3. Verify: `ls /dev/ttyUSB*`
+4. If missing, check for `brltty` conflicts
+
+---
+
+### 10. Q: How do I prevent shaking and overheating?
+
+**A:**
+
+- Avoid frequent target updates
+- Implement directional control:[Appendix 4](#appendix-4-prevent-shakingoverheating)
+- Send commands only when direction changes
+
+---
+
+## Appendices
+
+### Appendix 1: Basic Control
 
 ```python
 import time
@@ -144,7 +252,7 @@ if __name__ == "__main__":
     print("Current finger angle：", current_angle)
 ```
 
-### 2.Example of geting the angle range of the dexterous hand
+### Appendix 2: Measure Angle Ranges
 
 ```python
 import time
@@ -195,7 +303,7 @@ if __name__ == "__main__":
     print("Current finger angle：", current_angle)
 ```
 
-### 3.Example of reducing heat generation due to motor stuck
+### Appendix 3: Reduce Heat from Motor Stalls
 
 ```python
 # Sample code to get glove data and controls ROHand via ModBus-RTU protocol
@@ -285,7 +393,7 @@ if __name__ == "__main__":
     asyncio.run(app.main())
 ```
 
-### 4. Examples of programs to avoid shaking and overheating with dexterous hands
+### Appendix 4: Prevent Shaking/Overheating
 
 ```python
 

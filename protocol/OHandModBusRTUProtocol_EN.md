@@ -164,22 +164,22 @@ In case the error code is EC04_SERVER_DEVICE_FAILURE, the register ROH_SUB_EXCEP
 | ROH_CALI_THUMB_POS2           |             1042 | R/W               | Factory calibration value          | Preset position 2 (uint16) of thumb lateral palm position(absolute position), saved to Non-Volatile Memory (NVM) when setting, and no need to be set by the user. |
 | ROH_CALI_THUMB_POS3           |             1043 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_CALI_THUMB_POS4           |             1044 | R/W               |                                    | Reserved.                                                                                                                                                         |
-| ROH_FINGER_P0                 |             1045 | R/W               | 500 \* 100                         | P-value \*100 (uint16) of thumb bending, saved to Non-Volatile Memory (NVM) when setting.                                                                         |
-| ROH_FINGER_P1                 |             1046 | R/W               | 500 \* 100                         | P-value \*100 (uint16) of index finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                  |
-| ROH_FINGER_P2                 |             1047 | R/W               | 500 \* 100                         | P-value \*100 (uint16) of middle finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
-| ROH_FINGER_P3                 |             1048 | R/W               | 500 \* 100                         | P-value \*100 (uint16) of ring finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                   |
-| ROH_FINGER_P4                 |             1049 | R/W               | 500 \* 100                         | P-value \*100 (uint16) of little finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
-| ROH_FINGER_P5                 |             1050 | R/W               | 500 \* 100                         | P-value \*100 (uint16) of thumb rotation, saved to Non-Volatile Memory (NVM) when setting.                                                                        |
+| ROH_FINGER_P0                 |             1045 | R/W               | 250 \* 100                         | P-value \*100 (uint16) of thumb bending, saved to Non-Volatile Memory (NVM) when setting.                                                                         |
+| ROH_FINGER_P1                 |             1046 | R/W               | 250 \* 100                         | P-value \*100 (uint16) of index finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                  |
+| ROH_FINGER_P2                 |             1047 | R/W               | 250 \* 100                         | P-value \*100 (uint16) of middle finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
+| ROH_FINGER_P3                 |             1048 | R/W               | 250 \* 100                         | P-value \*100 (uint16) of ring finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                   |
+| ROH_FINGER_P4                 |             1049 | R/W               | 250 \* 100                         | P-value \*100 (uint16) of little finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
+| ROH_FINGER_P5                 |             1050 | R/W               | 250 \* 100                         | P-value \*100 (uint16) of thumb rotation, saved to Non-Volatile Memory (NVM) when setting.                                                                        |
 | ROH_FINGER_P6                 |             1051 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_P7                 |             1052 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_P8                 |             1053 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_P9                 |             1054 | R/W               |                                    | Reserved.                                                                                                                                                         |
-| ROH_FINGER_I0                 |             1055 | R/W               | 1 \* 100                           | I-value \*100 (uint16) of thumb bending, saved to Non-Volatile Memory (NVM) when setting.                                                                         |
-| ROH_FINGER_I1                 |             1056 | R/W               | 1 \* 100                           | I-value \*100 (uint16) of index finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                  |
-| ROH_FINGER_I2                 |             1057 | R/W               | 1 \* 100                           | I-value \*100 (uint16) of middle finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
-| ROH_FINGER_I3                 |             1058 | R/W               | 1 \* 100                           | I-value \*100 (uint16) of ring finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                   |
-| ROH_FINGER_I4                 |             1059 | R/W               | 1 \* 100                           | I-value \*100 (uint16) of little finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
-| ROH_FINGER_I5                 |             1060 | R/W               | 1 \* 100                           | I-value \*100 (uint16) of thumb rotation, saved to Non-Volatile Memory (NVM) when setting.                                                                        |
+| ROH_FINGER_I0                 |             1055 | R/W               | 2 \* 100                           | I-value \*100 (uint16) of thumb bending, saved to Non-Volatile Memory (NVM) when setting.                                                                         |
+| ROH_FINGER_I1                 |             1056 | R/W               | 2 \* 100                           | I-value \*100 (uint16) of index finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                  |
+| ROH_FINGER_I2                 |             1057 | R/W               | 2 \* 100                           | I-value \*100 (uint16) of middle finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
+| ROH_FINGER_I3                 |             1058 | R/W               | 2 \* 100                           | I-value \*100 (uint16) of ring finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                   |
+| ROH_FINGER_I4                 |             1059 | R/W               | 2 \* 100                           | I-value \*100 (uint16) of little finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
+| ROH_FINGER_I5                 |             1060 | R/W               | 2 \* 100                           | I-value \*100 (uint16) of thumb rotation, saved to Non-Volatile Memory (NVM) when setting.                                                                        |
 | ROH_FINGER_I6                 |             1061 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_I7                 |             1062 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_I8                 |             1063 | R/W               |                                    | Reserved.                                                                                                                                                         |
@@ -195,10 +195,10 @@ In case the error code is EC04_SERVER_DEVICE_FAILURE, the register ROH_SUB_EXCEP
 | ROH_FINGER_D8                 |             1073 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_D9                 |             1074 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_G0                 |             1075 | R/W               | 1.00 \* 100                        | G-value \*100 (uint16) of thumb bending, saved to Non-Volatile Memory (NVM) when setting.                                                                         |
-| ROH_FINGER_G1                 |             1076 | R/W               | 0.10 \* 100                        | G-value \*100 (uint16) of index finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                  |
-| ROH_FINGER_G2                 |             1077 | R/W               | 0.10 \* 100                        | G-value \*100 (uint16) of middle finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
-| ROH_FINGER_G3                 |             1078 | R/W               | 0.10 \* 100                        | G-value \*100 (uint16) of ring finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                   |
-| ROH_FINGER_G4                 |             1079 | R/W               | 0.10 \* 100                        | G-value \*100 (uint16) of little finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
+| ROH_FINGER_G1                 |             1076 | R/W               | 1.00 \* 100                        | G-value \*100 (uint16) of index finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                  |
+| ROH_FINGER_G2                 |             1077 | R/W               | 1.00 \* 100                        | G-value \*100 (uint16) of middle finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
+| ROH_FINGER_G3                 |             1078 | R/W               | 1.00 \* 100                        | G-value \*100 (uint16) of ring finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                   |
+| ROH_FINGER_G4                 |             1079 | R/W               | 1.00 \* 100                        | G-value \*100 (uint16) of little finger bending, saved to Non-Volatile Memory (NVM) when setting.                                                                 |
 | ROH_FINGER_G5                 |             1080 | R/W               | 1.00 \* 100                        | G-value \*100 (uint16) of thumb rotation, saved to Non-Volatile Memory (NVM) when setting.                                                                        |
 | ROH_FINGER_G6                 |             1081 | R/W               |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_G7                 |             1082 | R/W               |                                    | Reserved.                                                                                                                                                         |
@@ -294,100 +294,8 @@ In case the error code is EC04_SERVER_DEVICE_FAILURE, the register ROH_SUB_EXCEP
 | ROH_FINGER_ANGLE7             |             1172 | R                 |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_ANGLE8             |             1173 | R                 |                                    | Reserved.                                                                                                                                                         |
 | ROH_FINGER_ANGLE9             |             1174 | R                 |                                    | Reserved.                                                                                                                                                         |
-| ROH_FINGER_STOP_SPEED0        |             1175 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED1        |             1176 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED2        |             1177 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED3        |             1178 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED4        |             1179 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED5        |             1180 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED6        |             1181 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED7        |             1182 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED8        |             1183 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_SPEED9        |             1184 | R/W               |                                    |                                                                                                                                                                   |
-| ROH_FINGER_STOP_CURRENT0      |             1185 | R/W               | 200                                | Thumb bending motor stall stop current limit value (uint16), unit mA, resets to default value on startup                                                          |
-| ROH_FINGER_STOP_CURRENT1      |             1186 | R/W               | 200                                | Index finger bending motor stall stop current limit value (uint16), unit mA, resets to default value on startup                                                   |
-| ROH_FINGER_STOP_CURRENT2      |             1187 | R/W               | 200                                | Middle finger bending motor stall stop current limit value (uint16), unit mA, resets to default value on startup                                                  |
-| ROH_FINGER_STOP_CURRENT3      |             1188 | R/W               | 200                                | Ring finger bending motor stall stop current limit value (uint16), unit mA, resets to default value on startup                                                    |
-| ROH_FINGER_STOP_CURRENT4      |             1189 | R/W               | 200                                | Little finger bending motor stall stop current limit value (uint16), unit mA, resets to default value on startup                                                  |
-| ROH_FINGER_STOP_CURRENT5      |             1190 | R/W               | 200                                | Thumb rotation motor stall stop current limit value (uint16), unit mA, resets to default value on startup                                                         |
-| ROH_FINGER_STOP_CURRENT6      |             1191 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_CURRENT7      |             1192 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_CURRENT8      |             1193 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_CURRENT9      |             1194 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_AFTER_PERIOD0 |             1195 | R/W               | 300                                | Thumb bending motor stall stop time (uint16), unit ms, resets to default value on startup                                                                         |
-| ROH_FINGER_STOP_AFTER_PERIOD1 |             1196 | R/W               | 300                                | Index finger bending motor stall stop time (uint16), unit ms, resets to default value on startup                                                                  |
-| ROH_FINGER_STOP_AFTER_PERIOD2 |             1197 | R/W               | 300                                | Middle finger bending motor stall stop time (uint16), unit ms, resets to default value on startup                                                                 |
-| ROH_FINGER_STOP_AFTER_PERIOD3 |             1198 | R/W               | 300                                | Ring finger bending motor stall stop time (uint16), unit ms, resets to default value on startup                                                                   |
-| ROH_FINGER_STOP_AFTER_PERIOD4 |             1199 | R/W               | 300                                | Little finger bending motor stall stop time (uint16), unit ms, resets to default value on startup                                                                 |
-| ROH_FINGER_STOP_AFTER_PERIOD5 |             1200 | R/W               | 300                                | Thumb rotation motor stall stop time (uint16), unit ms, resets to default value on startup                                                                        |
-| ROH_FINGER_STOP_AFTER_PERIOD6 |             1201 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_AFTER_PERIOD7 |             1202 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_AFTER_PERIOD8 |             1203 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_AFTER_PERIOD9 |             1204 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_RETRY_PERIOD0 |             1205 | R/W               | 500                                | Thumb bending motor stall stop retry time (uint16), unit ms, resets to default value on startup                                                                   |
-| ROH_FINGER_STOP_RETRY_PERIOD1 |             1206 | R/W               | 500                                | Index finger bending motor stall stop retry time (uint16), unit ms, resets to default value on startup                                                            |
-| ROH_FINGER_STOP_RETRY_PERIOD2 |             1207 | R/W               | 500                                | Middle finger bending motor stall stop retry time (uint16), unit ms, resets to default value on startup                                                           |
-| ROH_FINGER_STOP_RETRY_PERIOD3 |             1208 | R/W               | 500                                | Ring finger bending motor stall stop retry time (uint16), unit ms, resets to default value on startup                                                             |
-| ROH_FINGER_STOP_RETRY_PERIOD4 |             1209 | R/W               | 500                                | Little finger bending motor stall stop retry time (uint16), unit ms, resets to default value on startup                                                           |
-| ROH_FINGER_STOP_RETRY_PERIOD5 |             1210 | R/W               | 500                                | Thumb rotation motor stall stop retry time (uint16), unit ms, resets to default value on startup                                                                  |
-| ROH_FINGER_STOP_RETRY_PERIOD6 |             1211 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_RETRY_PERIOD7 |             1212 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_RETRY_PERIOD8 |             1213 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_STOP_RETRY_PERIOD9 |             1214 | R/W               |                                    | Reserved                                                                                                                                                          |
-| ROH_FINGER_FORCE_EX0          |             2000 | R                 |                                    | Head of force senser 0 data register group, see details for different sensor types.                                                                               |
-| ...                           |              ... | R                 |                                    | Force senser 0 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX0_END      |             2099 | R                 |                                    | End of force senser01 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX1          |             2100 | R                 |                                    | Head of force senser 1 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 1 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX1_END      |             2199 | R                 |                                    | End of force senser 1 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX2          |             2200 | R                 |                                    | Head of force senser 2 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 2 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX2_END      |             2299 | R                 |                                    | End of force senser 2 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX3          |             2300 | R                 |                                    | Head of force senser 3 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 3 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX3_END      |             2399 | R                 |                                    | End of force senser 3 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX4          |             2400 | R                 |                                    | Head of force senser 4 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 4 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX4_END      |             2499 | R                 |                                    | End of force senser 4 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX5          |             2500 | R                 |                                    | Head of force senser 5 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 5 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX5_END      |             2599 | R                 |                                    | End of force senser 5 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX6          |             2600 | R                 |                                    | Head of force senser 6 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 6 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX6_END      |             2699 | R                 |                                    | End of force senser 6 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX7          |             2700 | R                 |                                    | Head of force senser 7 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 7 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX7_END      |             2799 | R                 |                                    | End of force senser 7 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX8          |             2800 | R                 |                                    | Head of force senser 8 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 8 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX8_END      |             2899 | R                 |                                    | End of force senser 8 data register group.                                                                                                                        |
-| ROH_FINGER_FORCE_EX9          |             2900 | R                 |                                    | Head of force senser 9 data register group,                                                                                                                       |
-| ...                           |              ... | R                 |                                    | Force senser 9 data registers.                                                                                                                                    |
-| ROH_FINGER_FORCE_EX9_END      |             2999 | R                 |                                    | End of force senser 9 data register group.                                                                                                                        |
-
-_notes:_
-
-ROH_FINGER_FORCE_EX0 to ROH_FINGER_FORCE_EX9 are the starting addresses for the data of individual force sensors. The actual data length for each sensor depends on the hardware, and each data value is of type uint16.
-
-1. Dot Matrix Version:
-   Thumb: 12 × 5 bytes (corresponding to 30 registers). The low 8 bits of the first register represent the first data byte. Each byte independently indicates the force magnitude in units of 10mN, and so on.
-   Index finger: 12 × 5 bytes.
-   Middle finger: 12 × 5 bytes.
-   Ring finger: 12 × 5 bytes.
-   Little finger: 8 × 4 bytes.
-   Palm: 12 × 5 bytes.
-
-2. 3D Force Version:
-   TBD.
-
-3. 1D Force Version:
-   uint6 data, representing force magnitude in units of 10mN.
-
-Enclose the C/C++ macro definition of registers:
 
 ```C
-
-#define FORCE_GROUP_SIZE              (100)
 
 /* ModBus-RTU registers for ROH */
 
@@ -566,63 +474,10 @@ Enclose the C/C++ macro definition of registers:
 #define ROH_FINGER_ANGLE7          (1172) /* R   */
 #define ROH_FINGER_ANGLE8          (1173) /* R   */
 #define ROH_FINGER_ANGLE9          (1174) /* R   */
-#define ROH_FINGER_STOP_SPEED0        (1175) /* R/W */
-#define ROH_FINGER_STOP_SPEED1        (1176) /* R/W */
-#define ROH_FINGER_STOP_SPEED2        (1177) /* R/W */
-#define ROH_FINGER_STOP_SPEED3        (1178) /* R/W */
-#define ROH_FINGER_STOP_SPEED4        (1179) /* R/W */
-#define ROH_FINGER_STOP_SPEED5        (1180) /* R/W */
-#define ROH_FINGER_STOP_SPEED6        (1181) /* R/W */
-#define ROH_FINGER_STOP_SPEED7        (1182) /* R/W */
-#define ROH_FINGER_STOP_SPEED8        (1183) /* R/W */
-#define ROH_FINGER_STOP_SPEED9        (1184) /* R/W */
-#define ROH_FINGER_STOP_CURRENT0      (1185) /* R/W */
-#define ROH_FINGER_STOP_CURRENT1      (1186) /* R/W */
-#define ROH_FINGER_STOP_CURRENT2      (1187) /* R/W */
-#define ROH_FINGER_STOP_CURRENT3      (1188) /* R/W */
-#define ROH_FINGER_STOP_CURRENT4      (1189) /* R/W */
-#define ROH_FINGER_STOP_CURRENT5      (1190) /* R/W */
-#define ROH_FINGER_STOP_CURRENT6      (1191) /* R/W */
-#define ROH_FINGER_STOP_CURRENT7      (1192) /* R/W */
-#define ROH_FINGER_STOP_CURRENT8      (1193) /* R/W */
-#define ROH_FINGER_STOP_CURRENT9      (1194) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD0 (1195) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD1 (1196) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD2 (1197) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD3 (1198) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD4 (1199) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD5 (1200) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD6 (1201) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD7 (1202) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD8 (1203) /* R/W */
-#define ROH_FINGER_STOP_AFETR_PERIOD9 (1204) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD0 (1205) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD1 (1206) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD2 (1207) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD3 (1208) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD4 (1209) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD5 (1210) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD6 (1211) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD7 (1212) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD8 (1213) /* R/W */
-#define ROH_FINGER_STOP_RETRY_PERIOD9 (1214) /* R/W */
 
-#define ROH_FINGER_FORCE_EX0          (2000 + 0 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX1          (2000 + 1 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX2          (2000 + 2 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX3          (2000 + 3 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX4          (2000 + 4 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX5          (2000 + 5 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX6          (2000 + 6 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX7          (2000 + 7 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX8          (2000 + 8 * FORCE_GROUP_SIZE) /* R   */
-#define ROH_FINGER_FORCE_EX9          (2000 + 9 * FORCE_GROUP_SIZE) /* R   */
 ```
 
 ```Python
-# Define
-FORCE_GROUP_SIZE              = (100)  # Max entries count for each force sensor
-
 # ModBus-RTU registers for ROH
 
 ROH_PROTOCOL_VERSION          = (1000) # R
@@ -800,57 +655,7 @@ ROH_FINGER_ANGLE6             = (1171) # R
 ROH_FINGER_ANGLE7             = (1172) # R
 ROH_FINGER_ANGLE8             = (1173) # R
 ROH_FINGER_ANGLE9             = (1174) # R
-ROH_FINGER_STOP_SPEED0        = (1175) # R/W
-ROH_FINGER_STOP_SPEED1        = (1176) # R/W
-ROH_FINGER_STOP_SPEED2        = (1177) # R/W
-ROH_FINGER_STOP_SPEED3        = (1178) # R/W
-ROH_FINGER_STOP_SPEED4        = (1179) # R/W
-ROH_FINGER_STOP_SPEED5        = (1180) # R/W
-ROH_FINGER_STOP_SPEED6        = (1181) # R/W
-ROH_FINGER_STOP_SPEED7        = (1182) # R/W
-ROH_FINGER_STOP_SPEED8        = (1183) # R/W
-ROH_FINGER_STOP_SPEED9        = (1184) # R/W
-ROH_FINGER_STOP_CURRENT0      = (1185) # R/W
-ROH_FINGER_STOP_CURRENT1      = (1186) # R/W
-ROH_FINGER_STOP_CURRENT2      = (1187) # R/W
-ROH_FINGER_STOP_CURRENT3      = (1188) # R/W
-ROH_FINGER_STOP_CURRENT4      = (1189) # R/W
-ROH_FINGER_STOP_CURRENT5      = (1190) # R/W
-ROH_FINGER_STOP_CURRENT6      = (1191) # R/W
-ROH_FINGER_STOP_CURRENT7      = (1192) # R/W
-ROH_FINGER_STOP_CURRENT8      = (1193) # R/W
-ROH_FINGER_STOP_CURRENT9      = (1194) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD0 = (1195) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD1 = (1196) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD2 = (1197) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD3 = (1198) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD4 = (1199) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD5 = (1200) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD6 = (1201) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD7 = (1202) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD8 = (1203) # R/W
-ROH_FINGER_STOP_AFETR_PERIOD9 = (1204) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD0 = (1205) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD1 = (1206) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD2 = (1207) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD3 = (1208) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD4 = (1209) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD5 = (1210) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD6 = (1211) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD7 = (1212) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD8 = (1213) # R/W
-ROH_FINGER_STOP_RETRY_PERIOD9 = (1214) # R/W
 
-ROH_FINGER_FORCE_EX0          = (2000 + 0 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX1          = (2000 + 1 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX2          = (2000 + 2 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX3          = (2000 + 3 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX4          = (2000 + 4 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX5          = (2000 + 5 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX6          = (2000 + 6 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX7          = (2000 + 7 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX8          = (2000 + 8 * FORCE_GROUP_SIZE) # R
-ROH_FINGER_FORCE_EX9          = (2000 + 9 * FORCE_GROUP_SIZE) # R
 ```
 
 ### 4.2. Angle of ROH_FINGER_ANGLE_TARGET and ROH_FINGER_POS
