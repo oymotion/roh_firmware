@@ -37,18 +37,19 @@
 
 **答:** 按照以下步骤:
 
-1. 确认使用的是OYMotion提供的USB转485模块
-2. 检查接线是否松动或损坏
-3. 确认是否做了共地处理（参考上方接线图）
-4. 若线路连接正确，仍通讯异常，尝试接上120Ω终端电阻，即将所提供的USB转RS485模块的A端口和R端口短接（端口2和3）。如下图所示：
+1. 确认通讯接口相同，请勿使用RS485对CAN版本的灵巧手进行通讯。
+2. 确认使用的是OYMotion提供的USB转RS485模块或USB转PCAN模块
+3. 检查接线是否松动或损坏
+4. 确认是否做了共地处理（参考上方接线图）
+5. 若线路连接正确，仍通讯异常，尝试接上120Ω终端电阻，即将所提供的USB转RS485模块的A端口和R端口短接（端口2和3）。如下图所示：
    ![120Ω resistor](res/terminal_resistor.png)
-5. 若仍无法解决，请联系傲意技术支持。
+6. 若仍无法解决，请联系傲意技术支持。
 
 ---
 
 ### 3. 问: ROHand的工作电压范围？
 
-**答:** ROHand工作电压可接受范围在12 ~ 26V:
+**答:** ROHand工作电压可接受范围在12 ~ 24V:
 
 - 额定电压: 24 V
 - 额定功率: 48 W  
@@ -62,7 +63,7 @@
 
 - 静态电流: 约0.12 A
 - 空载运动电流: 约0.25 A
-- 最大握力抓取电流: 约2.0 A
+- 最大握力五指抓取电流: 约2.0 A
 
 ---
 
@@ -106,19 +107,31 @@
 ### 2. 问: 如何获取手指角度以及控制手指角度？
 
 **答:**
-**获取角度:**  
-寄存器地址: 从`ROH_FINGER_ANGLE0` 到 `ROH_FINGER_ANGLE5`  
-读取数值: 角度（带符号整型） ÷ 100 = 实际角度
+**1.获取角度:**  
 
-**设置角度:**  
-写入寄存器: 从 `ROH_FINGER_ANGLE_TARGET0` 到 `ROH_FINGER_ANGLE_TARGET5`  
-输入: 角度（带符号整型） = 期望角度 × 100  
+- 寄存器地址: 从`ROH_FINGER_ANGLE0` 到 `ROH_FINGER_ANGLE5`
+- 读取数值（带符号整型） ≥ 32768: `实际角度 = (获取角度 - 65535) ÷ 100`
+- 读取数值（带符号整型） < 32768: `实际角度 = (获取角度) ÷ 100`
+
+**2.设置角度:**  
+
+- 写寄存器: 从 `ROH_FINGER_ANGLE_TARGET0` 到 `ROH_FINGER_ANGLE_TARGET5`  
+- 输入数值（带符号整型） ≥ 32768: `设置角度 = (期望角度 - 65535) × 100`
+- 输入数值（带符号整型） < 32768: `设置角度 = (期望角度) × 100`  
+
+**重要事项:**
+
+- 角度下限 ≤ 设置角度 ≤ 角度上限：`获取角度 = 设置角度`
+- 设置角度 ≥ 角度上限：`获取角度 = 角度上限`
+- 设置角度 ≤ 角度下限：`获取角度 = 角度下限`
 
 **示例:**  
-设置食指运动到 101.01° → 写入 10101 到 `ROH_FINGER_ANGLE_TARGET1`  
 
-**注:** 手指角度默认为手指第一关节和掌平面的夹角。
-详细定义请参考: [OHandModBusRTUProtocol_CN.md](../protocol/OHandModBusRTUProtocol_CN.md)
+- 设置食指运动到 101.01° → 写入 10101 到 `ROH_FINGER_ANGLE_TARGET1`  
+- 示例程序：[附录1](#附录-1-基础控制)
+
+**注:**  
+手指角度默认为手指第一关节和掌平面的夹角。详细定义请参考: [OHandModBusRTUProtocol_CN.md](../protocol/OHandModBusRTUProtocol_CN.md)
 
 ---
 
@@ -397,8 +410,8 @@ if __name__ == "__main__":
 
 ```python
 
-# The threshold for determining the change in target position is an integer in position control mode and a floating-point number in angle control mode
-TOLERANCE = 10 
+TOLERANCE = round(65536 / 32)  # 判断目标位置变化的阈值，位置控制模式时为整数，角度控制模式时为浮点数
+SPEED_CONTROL_THRESHOLD = 8192 # 位置变化低于该值时，线性调整手指运动速度
 
 prev_dir = [0 for _ in range(NUM_FINGERS)]
 prev_finger_data = [0 for _ in range(NUM_FINGERS)]
@@ -407,25 +420,46 @@ while True:
     finger_data = get_latest_data() # Obtain target position/angle
 
     dir = [0 for _ in range(NUM_FINGERS)]
+    pos = [0 for _ in range(NUM_FINGERS)]
+    target_changed = False
 
     for i in range(NUM_FINGERS):
         if finger_data[i] > prev_finger_data[i] + TOLERANCE:
+            prev_finger_data[i] = finger_data[i]
             dir[i] = 1
         elif finger_data[i] < prev_finger_data[i] - TOLERANCE:
+            prev_finger_data[i] = finger_data[i]
             dir[i] = -1
 
-        # Only send target position/angle when there is a change in direction
+        # 只在方向发生变化时发送目标位置/角度
         if dir[i] != prev_dir[i]:
-            prev_finger_data[i] = finger_data[i]
             prev_dir[i] = dir[i]
+            target_changed = True
 
-            if dir[i] == -1:
-                pos = 0
-            elif dir[i] == 0:
-                pos = finger_data[i]
-            else:
-                pos = 65535
+        if dir[i] == -1:
+            pos = 0
+        elif dir[i] == 0:
+            pos = finger_data[i]
+        else:
+            pos = 65535
 
-            resp = client.write_register(ROH_FINGER_POS_TARGET0 + i, pos, NODE_ID)
-            print(f"client.write_register({ROH_FINGER_POS_TARGET0 + i}, {pos}, {NODE_ID}) returned", resp)
+        if target_changed:
+            # 获取当前位置
+            curr_pos = [0 for _ in range(NUM_FINGERS)]
+            resp = client.read_holding_registers(ROH_FINGER_POS0, NUM_FINGERS, NODE_ID)
+            curr_pos = resp.registers
+
+            speed = [0 for _ in range(NUM_FINGERS)]
+
+            for i in range(NUM_FINGERS):
+                temp = interpolate(abs(curr_pos[i] - finger_data[i]), 0, SPEED_CONTROL_THRESHOLD, 0, 65535)
+                speed[i] = clamp(round(temp), 0, 65535)
+
+            # 设置速度
+            resp = client.write_register(ROH_FINGER_SPEED0, speed, NODE_ID)
+            print(f"client.write_register({ROH_FINGER_SPEED0}, {speed}, {NODE_ID}) returned", resp)
+
+            # 控制ROHand
+            resp = client.write_register(ROH_FINGER_POS_TARGET0, pos, NODE_ID)
+            print(f"client.write_register({ROH_FINGER_POS_TARGET0}, {pos}, {NODE_ID}) returned", resp)
 ```

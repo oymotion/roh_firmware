@@ -37,18 +37,19 @@ Wiring diagram:
 
 **A:** Follow these steps:
 
-1. Confirm you're using OYMotion's USB-to-RS485 module
-2. Check for loose connections or damaged wiring
-3. Verify proper common grounding (refer to wiring diagram)
-4. If issues persist, connect the 120Ω termination resistor by shorting A and R ports(port 2 and port 3). As shown in the following figure:
+1. Confirm that the communication interface is the same. Do not use RS485 to communicate with the CAN version of the SmartHand.
+2. Ensure that the USB-to-RS485 module or USB-to-PCAN module provided by OYMotion is used.
+3. Check for loose connections or damaged wiring
+4. Verify proper common grounding (refer to wiring diagram)
+5. If issues persist, connect the 120Ω termination resistor by shorting A and R ports(port 2 and port 3). As shown in the following figure:
    ![120Ω resistor](res/terminal_resistor.png)
-5. Contact technical support if problems continue
+6. Contact technical support if problems continue
 
 ---
 
 ### 3. Q: What is ROHand's operating voltage range?
 
-**A:** ROHand operates at 12-26 V DC with these specifications:
+**A:** ROHand operates at 12-24 V DC with these specifications:
 
 - Rated voltage: 24 V
 - Rated power: 48 W  
@@ -58,11 +59,11 @@ Wiring diagram:
 
 ### 4. Q: What are ROHand's current specifications?
 
-**A:** (At 24 V):
+**A:** At 24 V:
 
 - Standby current: ~0.12 A
 - No-load motion current: ~0.25 A
-- Peak gripping current: ~2.0 A
+- Peak 5-finger gripping current: ~2.0 A
 
 ---
 
@@ -106,16 +107,27 @@ Sample code: [Appendix 1](#appendix-1-basic-control)
 ### 2. Q: How do I read/control finger angles?
 
 **A:**
-**Read angles:**  
-Registers `ROH_FINGER_ANGLE0` to `ROH_FINGER_ANGLE5`  
-Values: Signed integers ÷ 100 = actual angle
+**1. Read Finger Angles:**
 
-**Set angles:**  
-Write to `ROH_FINGER_ANGLE_TARGET0` to `ROH_FINGER_ANGLE_TARGET5`  
-Input: Signed integers = desired angle × 100  
+- Register Addresses: `ROH_FINGER_ANGLE0` to `ROH_FINGER_ANGLE5`  
+- If read value (signed int) ≥ 32768:  `Actual Angle = (Read Value - 65535) / 100`  
+- If read value (signed int) < 32768:  `Actual Angle = (Read Value) / 100`  
+
+**2. Set Finger Angles:**
+
+- Write Registers: `ROH_FINGER_ANGLE_TARGET0` to `ROH_FINGER_ANGLE_TARGET5`  
+- If input value (signed int) ≥ 32768: `Set Angle = (Desired Angle - 65535) × 100`  
+- If input value (signed int) < 32768: `Set Angle = (Desired Angle) × 100`  
+
+**Important**  
+
+- If (Angle Lower Limit) ≤ (Set Angle) ≤ (Angle Upper Limit): `Read Angle = Set Angle`  
+- If (Set Angle) ≥ (Angle Upper Limit): `Read Angle = Angle Upper Limit`  
+- If (Set Angle) ≤ (Angle Lower Limit): `Read Angle = Angle Lower Limit`
 
 **Example:**  
 Set index finger to 101.01° → Write 10101 to `ROH_FINGER_ANGLE_TARGET1`  
+Sample code: [Appendix 1](#appendix-1-basic-control)
 
 **Note:** Angles measured between first joint and palm plane.  
 Protocol: [OHandModBusRTUProtocol_CN.md](../protocol/OHandModBusRTUProtocol_CN.md)
@@ -397,8 +409,9 @@ if __name__ == "__main__":
 
 ```python
 
-# The threshold for determining the change in target position is an integer in position control mode and a floating-point number in angle control mode
-TOLERANCE = 10 
+
+TOLERANCE = round(65536 / 32) # Determine the threshold for target position changes. Integer in position control mode, float in angle control mode.
+SPEED_CONTROL_THRESHOLD = 8192 # When the position change is below this value, linearly adjust the finger movement speed.
 
 prev_dir = [0 for _ in range(NUM_FINGERS)]
 prev_finger_data = [0 for _ in range(NUM_FINGERS)]
@@ -407,25 +420,46 @@ while True:
     finger_data = get_latest_data() # Obtain target position/angle
 
     dir = [0 for _ in range(NUM_FINGERS)]
+    pos = [0 for _ in range(NUM_FINGERS)]
+    target_changed = False
 
     for i in range(NUM_FINGERS):
         if finger_data[i] > prev_finger_data[i] + TOLERANCE:
+            prev_finger_data[i] = finger_data[i]
             dir[i] = 1
         elif finger_data[i] < prev_finger_data[i] - TOLERANCE:
+            prev_finger_data[i] = finger_data[i]
             dir[i] = -1
 
-        # Only send target position/angle when there is a change in direction
+        # Only send the target position/angle when the direction changes.
         if dir[i] != prev_dir[i]:
-            prev_finger_data[i] = finger_data[i]
             prev_dir[i] = dir[i]
+            target_changed = True
 
-            if dir[i] == -1:
-                pos = 0
-            elif dir[i] == 0:
-                pos = finger_data[i]
-            else:
-                pos = 65535
+        if dir[i] == -1:
+            pos = 0
+        elif dir[i] == 0:
+            pos = finger_data[i]
+        else:
+            pos = 65535
 
-            resp = client.write_register(ROH_FINGER_POS_TARGET0 + i, pos, NODE_ID)
-            print(f"client.write_register({ROH_FINGER_POS_TARGET0 + i}, {pos}, {NODE_ID}) returned", resp)
+        if target_changed:
+            # Obtain the current position.
+            curr_pos = [0 for _ in range(NUM_FINGERS)]
+            resp = client.read_holding_registers(ROH_FINGER_POS0, NUM_FINGERS, NODE_ID)
+            curr_pos = resp.registers
+
+            speed = [0 for _ in range(NUM_FINGERS)]
+
+            for i in range(NUM_FINGERS):
+                temp = interpolate(abs(curr_pos[i] - finger_data[i]), 0, SPEED_CONTROL_THRESHOLD, 0, 65535)
+                speed[i] = clamp(round(temp), 0, 65535)
+
+            # Set speed
+            resp = client.write_register(ROH_FINGER_SPEED0, speed, NODE_ID)
+            print(f"client.write_register({ROH_FINGER_SPEED0}, {speed}, {NODE_ID}) returned", resp)
+
+            # Control ROHand
+            resp = client.write_register(ROH_FINGER_POS_TARGET0, pos, NODE_ID)
+            print(f"client.write_register({ROH_FINGER_POS_TARGET0}, {pos}, {NODE_ID}) returned", resp)
 ```
