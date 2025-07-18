@@ -39,7 +39,8 @@ Wiring diagram:
 
 1. Confirm that the communication interface is the same. Do not use RS485 to communicate with the CAN version of the SmartHand.
 2. Ensure that the USB-to-RS485 module or USB-to-PCAN module provided by OYMotion is used.
-3. Check for loose connections or damaged wiring
+3. Check for loose or damaged wiring. When using quick-connect terminals, ensure the metal part of the cable makes proper contact, or use a crimping tool to securely attach terminals to the cable.
+   ![wiring terminal](res/wiring_terminal.png)
 4. Verify proper common grounding (refer to wiring diagram)
 5. If issues persist, connect the 120Ω termination resistor by shorting A and R ports(port 2 and port 3). As shown in the following figure:
    ![120Ω resistor](res/terminal_resistor.png)
