@@ -5,9 +5,13 @@
 The user control unit sends command data to control the state of the ROH dexterous hand.
 The upper system sends read instructions to the ROH dexterous hand, and the ROH dexterous hand receives the instruction data and returns the corresponding result to the upper system after the instruction data is successfully verified.  
 
+*Note:* The CAN protocol and serial protocol use the same command format. The CAN protocol uses CAN messages with 8 bytes per frame, and the CAN ID must match the dexterous hand ID.
+
 ## 2. Parameters of RS232、RS485 Communication
 
 The communication parameters of RS232、RS485 are 115200bps、8 data bits、1 stop bit、no parity.
+
+CAN: 1000000 bps (1 Mbps).
 
 ## 3. OHand Serial Command Frame Format
 
