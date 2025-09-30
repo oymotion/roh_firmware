@@ -27,3 +27,12 @@ sudo apt install libgl1-mesa-dev libglvnd-dev -y
 sudo apt install qt6-base-dev qt6-tools-dev-tools -y
 sudo apt install python-is-python3
 ```
+
+## Run
+
+```bash
+sudo chmod +x OHandSetting.sh
+sudo chmod +x /bin/OHandSetting
+sudo chmod o+rw /dev/ttyUSB0
+bash ./OHandSetting.sh
+```
