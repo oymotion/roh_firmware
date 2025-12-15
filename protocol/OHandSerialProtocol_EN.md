@@ -47,7 +47,7 @@ Command Frame (HEX):
 
 | Header | Dexterous hand ID | Host ID | Operation command | Length of the data | Command data                                          | Check code |
 | ------ | ----------------- | ------- | ----------------- | ------------------ | ----------------------------------------------------- | ---------- |
-| 55 AA  | 02                | 01      | 50                | 12                 | 10 27 FF 10 27 FF 10 27 FF 10 27 FF 10 27 FF 10 27 FF | 66         |
+| 55 AA  | 02                | 01      | 50                | 12                 | 10 27 FF 10 27 FF 10 27 FF 10 27 FF 10 27 FF 10 27 FF | 41         |
 
 Correct Response Frame (HEX):
 
