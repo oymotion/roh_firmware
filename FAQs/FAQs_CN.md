@@ -213,6 +213,47 @@
 
 ---
 
+### 11. 问: 如何获取工厂数据?
+
+**答:**  使用ModBus-RTU协议读取位置寄存器:
+
+- 寄存器地址: `ROH_MANU_DATA0` - `ROH_MANU_DATA12`  
+  - 子类型: `ROH_MANU_DATA0` 读取到的数据字节的高位  
+  - 硬件修改版本: `ROH_MANU_DATA0` 读取到的数据字节的低位  
+  - 序列号: `ROH_MANU_DATA1` - `ROH_MANU_DATA8`  
+  - 客户标记: `ROH_MANU_DATA9` - `ROH_MANU_DATA12`
+
+示例代码：[附录5](#附录-5-获取工厂数据)
+
+---
+
+### 12. 问: 如何设置堵转保护?
+
+**答:**  使用ModBus-RTU协议写入位置寄存器:
+
+- 寄存器地址:  
+  - 堵转速度: `ROH_FINGER_STALL_SPEED0` - `ROH_FINGER_STALL_SPEED5`, 当电机的运行速度低于该设定值时，电机进入堵转保护模式  
+  - 堵转电流: `ROH_FINGER_STALL_CURRENT0` - `ROH_FINGER_STALL_CURRENT5`, 当电机运行时电流大于该设定值，电机进入堵转保护模式，单位 mA   
+  - 堵转时间: `ROH_FINGER_STOP_AFTER_PERIOD0` - `ROH_FINGER_STOP_AFTER_PERIOD5`, 电机堵转时单次尝试运行的时间，单位ms  
+  - 重试时间: `ROH_FINGER_RETRY_AFTER_PERIOD0` - `ROH_FINGER_RETRY_AFTER_PERIOD5`, 堵转时电机两次尝试运行之间的时间间隔，单位 ms  
+
+示例代码：[附录6](#附录-6-设置堵转保护)
+
+---
+
+### 13. 问: 如何设置速度控制?
+
+**答:**  使用ModBus-RTU协议写入位置寄存器:
+
+- 寄存器地址:  
+  - 刹车距离: `ROH_SPEED_CTRL_BRAKE_DISTANCE`, 手指在距离目标位置只有设置值时开始减速，直到平稳停在目标位置  
+  - 加速距离: `ROH_SPEED_CTRL_ACCEL_DISTANCE`, 手指在开始运动时的这段位置开始逐步加速至最大速度  
+  - 速度系数: `ROH_SPEED_CTRL_PID_SPEED_RATIO`, 加速度系数  
+
+示例代码：[附录7](#附录-7-设置速度控制)
+
+---
+
 ## 附录
 
 ### 附录 1. 基础控制
@@ -463,4 +504,246 @@ while True:
             # 控制ROHand
             resp = client.write_register(ROH_FINGER_POS_TARGET0, pos, NODE_ID)
             print(f"client.write_register({ROH_FINGER_POS_TARGET0}, {pos}, {NODE_ID}) returned", resp)
+```
+
+### 附录 5: 获取工厂数据
+
+```python
+
+import sys
+import os
+
+from pymodbus import FramerType
+from pymodbus.client import ModbusSerialClient
+from pymodbus.exceptions import ModbusException
+from serial.tools import list_ports
+
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from roh_registers_v1 import *
+
+NODE_ID = 2
+
+def find_comport(port_name):
+    """
+    Find available serial port automatically
+    :param port_name: Characterization of the port description, such as "CH340"
+    :return: Comport of device if successful, None otherwise
+    """
+    ports = list_ports.comports()
+    for port in ports:
+        if port_name in port.description:
+            return port.device
+    return None
+
+def read_registers(client, address, count):
+    """
+    Read data from Modbus device.
+    :param client: Modbus client instance
+    :param address: Register address
+    :param count: Register count to be read
+    :return: List of registers if successful, None otherwise
+    """
+    try:
+        resp = client.read_holding_registers(address, count, NODE_ID)
+        if resp.isError():
+            return None
+        return resp.registers
+    except ModbusException as e:
+        print("ModbusException:{0}".format(e))
+        return None
+
+def register_value_to_chars(register_value):
+    char1 = chr((register_value >> 8) & 0xFF)
+    char2 = chr(register_value & 0xFF)
+    return char1, char2
+
+def main():
+    sub_model = 0
+    hw_modify_version = 0
+    serial_number = ''
+    customer_tag = ''
+
+    client = ModbusSerialClient(find_comport("CH340"), FramerType.RTU, 115200)
+
+    if not client.connect():
+        print("Failed to connect to Modbus device")
+        exit(-1)
+
+    resp = read_registers(client, ROH_MANU_DATA0, 1)
+    if resp is not None:
+        sub_model = (resp[0] >> 8) & 0xFF
+        hw_modify_version = (resp[0]) & 0xFF
+        print(f"sub_model: {sub_model}, hw_modify_version: {hw_modify_version}")
+
+    # serial_number
+    for i in range(8):
+        resp = read_registers(client, ROH_MANU_DATA1 + i, 1)
+        if resp is not None:
+            c1, c2 = register_value_to_chars(resp[0])
+            if c1 != '\0':
+                serial_number += c1
+            if c2 != '\0':
+                serial_number += c2
+            print(f"serial_number: {serial_number}")
+
+    # customer_tag
+    for i in range(4):
+        resp = read_registers(client, ROH_MANU_DATA9 + i, 1)
+        if resp is not None:
+            c1, c2 = register_value_to_chars(resp[0])
+            customer_tag += c1 + c2
+            print(f"customer_tag: {customer_tag}")
+
+if __name__ == "__main__":
+    main()
+
+```
+
+### 附录 6: 设置堵转保护
+
+```python
+
+import sys
+import os
+
+from pymodbus import FramerType
+from pymodbus.client import ModbusSerialClient
+from pymodbus.exceptions import ModbusException
+from serial.tools import list_ports
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from common.roh_registers_v1 import *
+
+NODE_ID = 2
+NUM_MOTORS = 6
+
+STALL_SPEED = 16
+STALL_CURRENT = 200
+STOP_AFTER_PERIOD = 300
+RETRY_AFTER_PERIOD = 500
+
+def find_comport(port_name):
+    """
+    Find available serial port automatically
+    :param port_name: Characterization of the port description, such as "CH340"
+    :return: Comport of device if successful, None otherwise
+    """
+    ports = list_ports.comports()
+    for port in ports:
+        if port_name in port.description:
+            return port.device
+    return None
+
+def write_registers(client, address, values):
+    """
+    Write data to Modbus device.
+    :param client: Modbus client instance
+    :param address: Register address
+    :param values: Data to be written
+    :return: True if successful, False otherwise
+    """
+    try:
+        resp = client.write_registers(address, values, NODE_ID)
+        if resp.isError():
+            print("client.write_registers() returned", resp)
+            return False
+        return True
+    except ModbusException as e:
+        print("ModbusException:{0}".format(e))
+        return False
+
+def main():
+    client = ModbusSerialClient(find_comport("CH340"), FramerType.RTU, 115200)
+
+    if not client.connect():
+        print("Failed to connect to Modbus device")
+        exit(-1)
+
+    for i in range(NUM_MOTORS):
+        if not write_registers(client, ROH_FINGER_STALL_SPEED0 + i, STALL_SPEED):
+            print(f"Failed to write finger{i} stall speed")
+        if not write_registers(client, ROH_FINGER_STALL_CURRENT0 + i, STALL_CURRENT):
+            print(f"Failed to write finger{i} stall current")
+        if not write_registers(client, ROH_FINGER_STOP_AFTER_PERIOD0 + i, STOP_AFTER_PERIOD):
+            print(f"Failed to write finger{i} stop after period")
+        if not write_registers(client, ROH_FINGER_RETRY_AFTER_PERIOD0 + i, RETRY_AFTER_PERIOD):
+            print(f"Failed to write finger{i} retry after period")
+
+if __name__ == "__main__":
+    main()
+
+```
+
+### 附录 7: 设置速度控制
+
+```python
+
+import sys
+import os
+
+from pymodbus import FramerType
+from pymodbus.client import ModbusSerialClient
+from pymodbus.exceptions import ModbusException
+from serial.tools import list_ports
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from common.roh_registers_v1 import *
+
+NODE_ID = 2
+NUM_MOTORS = 6
+
+PID_FACTOR = 100
+
+BRAKE_DISTANCE = 1024
+ACCEL_DISTANCE = 1024
+PID_SPEED_RATIO = 0.5
+
+def find_comport(port_name):
+    """
+    Find available serial port automatically
+    :param port_name: Characterization of the port description, such as "CH340"
+    :return: Comport of device if successful, None otherwise
+    """
+    ports = list_ports.comports()
+    for port in ports:
+        if port_name in port.description:
+            return port.device
+    return None
+
+def write_registers(client, address, values):
+    """
+    Write data to Modbus device.
+    :param client: Modbus client instance
+    :param address: Register address
+    :param values: Data to be written
+    :return: True if successful, False otherwise
+    """
+    try:
+        resp = client.write_registers(address, values, NODE_ID)
+        if resp.isError():
+            print("client.write_registers() returned", resp)
+            return False
+        return True
+    except ModbusException as e:
+        print("ModbusException:{0}".format(e))
+        return False
+
+def main():
+    client = ModbusSerialClient(find_comport("CH340"), FramerType.RTU, 115200)
+
+    if not client.connect():
+        print("Failed to connect to Modbus device")
+        exit(-1)
+
+    if not write_registers(client, ROH_SPEED_CTRL_BRAKE_DISTANCE, BRAKE_DISTANCE):
+        print(f"Failed to write speed ctrl brake distance")
+    if not write_registers(client, ROH_SPEED_CTRL_ACCEL_DISTANCE, ACCEL_DISTANCE):
+        print(f"Failed to write speed ctrl accel distance")
+    if not write_registers(client, ROH_SPEED_CTRL_PID_SPEED_RATIO, int(PID_SPEED_RATIO * PID_FACTOR)):
+        print(f"Failed to write speed ctrl pid speed ratio")
+
+if __name__ == "__main__":
+    main()
+
 ```
