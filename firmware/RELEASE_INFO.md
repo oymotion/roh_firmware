@@ -20,3 +20,8 @@
 | V3.1-275 | 2025-06-19 | Fixed bug: wrong speed size and excess motor count parameters of batch setting command                                                            |
 |          |            | Added:  Can protocol.                                                                                                                             |
 | V3.1-283 | 2025-08-11 | Modified itinerary data                                                                                                                           |
+| V3.1.309 | 2026-01-13 | Added: Read/write manufacturer data.                                                                                                              |
+|          |            | Added: Read/write speed control parameters.                                                                                                       |
+|          |            | Added: Read/write stall protection parameters.                                                                                                    |
+|          |            | Reduced: Data transmission latency for CAN communication.                                                                                         |
+|          |            | Adjusted: Valid range for ID setting to 0-247.                                                                                                    |
