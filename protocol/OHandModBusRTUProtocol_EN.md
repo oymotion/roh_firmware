@@ -21,7 +21,7 @@ The format of Master request frame:
 
 | Slave address | Function code | Start register(high byte) | Start register(low byte) | Number of registers(high byte) | Number of registers(low byte) | CRC16 |
 | ------------- | ------------- | ------------------------- | ------------------------ | ------------------------------ | ----------------------------- | ----- |
-| 0x11          | 0x03          | 0x6B                      | 0x00                     | 0x00                           | 0x02                          | XXXX  |
+| 0x11          | 0x03          | 0x00                      | 0x6B                     | 0x00                           | 0x02                          | XXXX  |
 
 Meaning: read NO.17(0x11) Slave holding register; Start address = 0x006B, Number of registers = 0x0002, end address = 0x006B+2-1 = 0x006C, that is, read NO.17 slave holding register 0x006B-0x006C, two registers in total.
 
